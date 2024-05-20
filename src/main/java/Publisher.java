@@ -2,64 +2,77 @@ import org.eclipse.paho.client.mqttv3.*;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 
 public class Publisher {
-    String broker = "tcp://localhost:1883";
-    String topic = "mqtt/test";
-    String clientid = "publish_client";
-    String content = "Hello MQTT";
-    int qos = 0;
+    private static final String BROKER_URL = "tcp://localhost:1883";
+    private static final String CLIENT_ID = "pub_client";
+    private MqttClient client;
+    private int[] qosOptions = {0, 1, 2};
+    private int[] delayOptions = {0, 1, 2, 4};
+    private static final int INSTANCE_ID = 1;
+    private static final long PUBLISH_DURATION_MS = 60000; // 60 seconds
 
-    public Publisher() {
+    public Publisher() throws MqttException {
+        this.client = new MqttClient(BROKER_URL, CLIENT_ID, new MemoryPersistence());
         connect();
+        subscribeToControlTopics();
     }
 
+    private void connect() throws MqttException {
+        MqttConnectOptions options = new MqttConnectOptions();
+        options.setConnectionTimeout(60);
+        options.setKeepAliveInterval(60);
+        client.connect(options);
+        client.setCallback(new MqttCallbackExtended() {
+            @Override
+            public void connectComplete(boolean reconnect, String serverURI) {
+                System.out.println("Connected to broker: " + serverURI);
+            }
 
-    public void connect() {
-        try {
-            MqttClient client = new MqttClient(broker, clientid, new MemoryPersistence());
-            // 连接参数
-            MqttConnectOptions options = new MqttConnectOptions();
-            // 设置用户名和密码
-            options.setConnectionTimeout(60);
-            options.setKeepAliveInterval(60);
-            client.setCallback(new MqttCallback(){
+            @Override
+            public void connectionLost(Throwable cause) {
+                System.out.println("Connection lost: " + cause.getMessage());
+            }
 
-                @Override
-                public void connectionLost(Throwable cause) {
+            @Override
+            public void messageArrived(String topic, MqttMessage message) throws Exception {
+                System.out.println("Message arrived: " + new String(message.getPayload()));
+            }
 
+            @Override
+            public void deliveryComplete(IMqttDeliveryToken token) {
+                System.out.println("Delivery complete for token: " + token.getResponse());
+            }
+        });
+    }
+
+    private void subscribeToControlTopics() throws MqttException {
+        client.subscribe("request/qos", 1);
+        client.subscribe("request/delay", 1);
+    }
+
+    public void startPublishing() throws MqttException, InterruptedException {
+        for (int qos : qosOptions) {
+            for (int delay : delayOptions) {
+                long startTime = System.currentTimeMillis();
+                int counter = 0;
+                while (System.currentTimeMillis() - startTime < PUBLISH_DURATION_MS) {
+                    String content = "Counter: " + counter++;
+                    String topic = String.format("counter/%d/%d/%d", INSTANCE_ID, qos, delay);
+                    MqttMessage message = new MqttMessage(content.getBytes());
+                    message.setQos(qos);
+                    client.publish(topic, message);
+                    System.out.println("Published to " + topic + ": " + content);
+                    Thread.sleep(delay);
                 }
-
-                @Override
-                public void messageArrived(String topic, MqttMessage message) throws Exception {
-
-                }
-
-                @Override
-                public void deliveryComplete(IMqttDeliveryToken token) {
-                    System.out.println("deliveryComplete---------" + token.isComplete());
-                }
-            });
-
-
-            // 连接
-            client.connect(options);
-            // 创建消息并设置 QoS
-            MqttMessage message = new MqttMessage(content.getBytes());
-            message.setQos(qos);
-            // 发布消息
-            client.publish(topic, message);
-            System.out.println("Message published");
-            System.out.println("topic: " + topic);
-            System.out.println("message content: " + content);
-            // 关闭连接
-            client.disconnect();
-            // 关闭客户端
-            client.close();
-        } catch (MqttException e) {
-            throw new RuntimeException(e);
+            }
         }
     }
 
     public static void main(String[] args) {
-        Publisher publisher = new Publisher();
+        try {
+            Publisher publisher = new Publisher();
+            publisher.startPublishing();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
