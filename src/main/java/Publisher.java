@@ -7,7 +7,7 @@ public class Publisher {
     private MqttClient client;
     private int[] qosOptions = {0, 1, 2};
     private int[] delayOptions = {0, 1, 2, 4};
-    private static final int INSTANCE_ID = 1;
+    private int INSTANCE_ID = 0;
     private static final long PUBLISH_DURATION_MS = 60000; // 60 seconds
 
     public Publisher() throws MqttException {
@@ -69,8 +69,11 @@ public class Publisher {
 
     public static void main(String[] args) {
         try {
-            Publisher publisher = new Publisher();
-            publisher.startPublishing();
+            for (int i = 1; i <= 5; i++) {
+                Publisher publisher = new Publisher();
+                publisher.INSTANCE_ID = i;
+                publisher.startPublishing();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
