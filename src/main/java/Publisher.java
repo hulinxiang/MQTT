@@ -8,7 +8,7 @@ public class Publisher {
     private int[] qosOptions = {0, 1, 2};
     private int[] delayOptions = {0, 1, 2, 4};
     private int INSTANCE_ID = 0;
-    private static final long PUBLISH_DURATION_MS = 60000; // 60 seconds
+    private static final long PUBLISH_DURATION_MS = 1; // 60 seconds
 
     public Publisher() throws MqttException {
         this.client = new MqttClient(BROKER_URL, CLIENT_ID, new MemoryPersistence());
