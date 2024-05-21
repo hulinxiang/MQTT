@@ -13,7 +13,6 @@ public class Publisher {
     public Publisher() throws MqttException {
         this.client = new MqttClient(BROKER_URL, CLIENT_ID, new MemoryPersistence());
         connect();
-        subscribeToControlTopics();
     }
 
     private void connect() throws MqttException {
@@ -54,11 +53,6 @@ public class Publisher {
         } catch (MqttException e) {
             System.out.println("Error while disconnecting: " + e.getMessage());
         }
-    }
-
-    private void subscribeToControlTopics() throws MqttException {
-        client.subscribe("request/qos", 1);
-        client.subscribe("request/delay", 1);
     }
 
     public void startPublishing() throws MqttException, InterruptedException {
