@@ -47,13 +47,14 @@ public class Subscriber {
     private void subscribeToTopics() {
         // 构造并订阅每一个主题
         try {
-            for (int instance = 1; instance <= INSTANCE_COUNT; instance++) {
-                for (int pubQos : QOS_OPTIONS) {
-                    for (int delay : DELAY_OPTIONS) {
-                        String topic = String.format("counter/%d/%d/%d", instance, pubQos, delay);
-                        for (int subQos : QOS_OPTIONS) {
+            for (int subQos : QOS_OPTIONS) {
+                for (int instance = 1; instance <= INSTANCE_COUNT; instance++) {
+                    for (int pubQos : QOS_OPTIONS) {
+                        for (int delay : DELAY_OPTIONS) {
+                            String topic = String.format("counter/%d/%d/%d", instance, pubQos, delay);
                             client.subscribe(topic, subQos);
                             System.out.println("Subscribed to topic: " + topic + " with QoS " + subQos);
+
                         }
                     }
                 }
