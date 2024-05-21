@@ -5,9 +5,12 @@ public class Subscriber {
     private static final String BROKER_URL = "tcp://localhost:1883";
     private static final String CLIENT_ID = "subscribe_client";
     private MqttClient client;
-    private static final int[] QOS_OPTIONS = {0, 1, 2};  // QoS 级别数组
-    private static final int[] DELAY_OPTIONS = {0, 1, 2, 4};  // 延迟选项数组
-    private static final int INSTANCE_COUNT = 5;  // 实例计数
+    // QoS 级别数组
+    private static final int[] QOS_OPTIONS = {0, 1, 2};
+    // 实例计数
+    private static final int[] DELAY_OPTIONS = {0, 1, 2, 4};
+    // 实例计数
+    private static final int INSTANCE_COUNT = 5;
 
     public Subscriber() {
         connect();
@@ -54,7 +57,6 @@ public class Subscriber {
                             String topic = String.format("counter/%d/%d/%d", instance, pubQos, delay);
                             client.subscribe(topic, subQos);
                             System.out.println("Subscribed to topic: " + topic + " with QoS " + subQos);
-
                         }
                     }
                 }
