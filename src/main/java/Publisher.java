@@ -44,26 +44,42 @@ public class Publisher {
         });
     }
 
+    private void disconnect() {
+        try {
+            if (client != null) {
+                client.disconnect();
+                System.out.println("Disconnected safely.");
+                client.close(); // Additionally ensure the client is closed after disconnect
+            }
+        } catch (MqttException e) {
+            System.out.println("Error while disconnecting: " + e.getMessage());
+        }
+    }
+
     private void subscribeToControlTopics() throws MqttException {
         client.subscribe("request/qos", 1);
         client.subscribe("request/delay", 1);
     }
 
     public void startPublishing() throws MqttException, InterruptedException {
-        for (int qos : qosOptions) {
-            for (int delay : delayOptions) {
-                long startTime = System.currentTimeMillis();
-                int counter = 0;
-                while (System.currentTimeMillis() - startTime < PUBLISH_DURATION_MS) {
-                    String content = "Counter: " + counter++;
-                    String topic = String.format("counter/%d/%d/%d", INSTANCE_ID, qos, delay);
-                    MqttMessage message = new MqttMessage(content.getBytes());
-                    message.setQos(qos);
-                    client.publish(topic, message);
-                    System.out.println("Published to " + topic + ": " + content);
-                    Thread.sleep(delay);
+        try {
+            for (int qos : qosOptions) {
+                for (int delay : delayOptions) {
+                    long startTime = System.currentTimeMillis();
+                    int counter = 0;
+                    while (System.currentTimeMillis() - startTime < PUBLISH_DURATION_MS) {
+                        String content = "Counter: " + counter++;
+                        String topic = String.format("counter/%d/%d/%d", INSTANCE_ID, qos, delay);
+                        MqttMessage message = new MqttMessage(content.getBytes());
+                        message.setQos(qos);
+                        client.publish(topic, message);
+                        System.out.println("Published to " + topic + ": " + content);
+                        Thread.sleep(delay);
+                    }
                 }
             }
+        }finally {
+            disconnect();
         }
     }
 
