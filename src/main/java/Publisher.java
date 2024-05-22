@@ -69,9 +69,8 @@ public class Publisher {
     private void publishData(int instanceId) throws InterruptedException {
         long startTime = System.currentTimeMillis();
         int count = 0;
-        System.out.println("我要进去了哦");
         while (System.currentTimeMillis() - startTime < DURATION) {
-            System.out.println("正在执行 count: " + count);
+            System.out.println("count: " + count);
             String topic = String.format("counter/%d/%d/%d", instanceId, currentQos, currentDelay);
             message = new MqttMessage(String.valueOf(count).getBytes());
             message.setQos(currentQos);
