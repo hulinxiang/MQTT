@@ -9,7 +9,7 @@ public class Subscriber {
     private static final int[] QOS_OPTIONS = {0, 1, 2};
     private static final int[] DELAY_OPTIONS = {0, 1, 2, 4};
     private static final int INSTANCE_COUNT = 5;
-    private static final int PUBLISH_DURATION = 20000;
+    private static final int PUBLISH_DURATION = 60000;
 
 
     public Subscriber() {

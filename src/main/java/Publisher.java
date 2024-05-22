@@ -11,9 +11,10 @@ public class Publisher {
     private MqttClient client;
     private int currentQos = 0;
     private int currentDelay = 1000;
-    private static final int DURATION = 20000;
+    private static final int DURATION = 60000;
     private MqttMessage message;
-//    private ExecutorService executor = Executors.newCachedThreadPool();  // 创建一个线程池
+    private ExecutorService executor = Executors.newCachedThreadPool();
+    // 创建一个线程池
 
 
     public Publisher() {
@@ -69,24 +70,29 @@ public class Publisher {
         while (System.currentTimeMillis() - startTime < DURATION) {
             System.out.println("正在执行 count: " + count);
             String topic = String.format("counter/%d/%d/%d", instanceId, currentQos, currentDelay);
-            message = new MqttMessage(String.valueOf(count).getBytes());
+            MqttMessage message = new MqttMessage(String.valueOf(count).getBytes());
             message.setQos(currentQos);
             System.out.println(topic);
             System.out.println(message);
-            try {
-                if (client.isConnected()) {
-                    client.publish(topic, message);
-                    System.out.println("Finish publishing");
-                } else {
-                    System.out.println("Client is not connected.");
+
+            // 使用线程池异步发送消息
+            int finalCount = count;
+            executor.submit(() -> {
+                try {
+                    if (client.isConnected()) {
+                        client.publish(topic, message);
+                        System.out.println("Finish publishing message: " + finalCount + " to topic: " + topic);
+                    } else {
+                        System.out.println("Client is not connected.");
+                    }
+                } catch (MqttException e) {
+                    System.out.println("Failed to publish message: " + e.getMessage());
+                    e.printStackTrace();
                 }
-            } catch (MqttException e) {
-                System.out.println("Failed to publish message: " + e.getMessage());
-                e.printStackTrace();
-            }
-            System.out.println("Published message: " + count + " to topic: " + topic);
+            });
+
             count++;
-            if (currentDelay!=0){
+            if (currentDelay != 0) {
                 Thread.sleep(currentDelay);
             }
         }
