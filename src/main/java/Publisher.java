@@ -1,6 +1,7 @@
 import org.eclipse.paho.client.mqttv3.*;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 import org.json.JSONObject;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -30,6 +31,8 @@ public class Publisher {
     private void connect() throws MqttException {
         client = new MqttClient(BROKER_URL, CLIENT_ID, new MemoryPersistence());
         MqttConnectOptions options = new MqttConnectOptions();
+        options.setCleanSession(true);
+        options.setMaxInflight(10000);
         options.setConnectionTimeout(60);
         options.setKeepAliveInterval(60);
         client.connect(options);
@@ -63,14 +66,14 @@ public class Publisher {
         client.subscribe("request/config"); // 只订阅一个用于配置更新的主题
     }
 
-    private void publishData(int instanceId) throws MqttException, InterruptedException {
+    private void publishData(int instanceId) throws InterruptedException {
         long startTime = System.currentTimeMillis();
         int count = 0;
         System.out.println("我要进去了哦");
         while (System.currentTimeMillis() - startTime < DURATION) {
             System.out.println("正在执行 count: " + count);
             String topic = String.format("counter/%d/%d/%d", instanceId, currentQos, currentDelay);
-            MqttMessage message = new MqttMessage(String.valueOf(count).getBytes());
+            message = new MqttMessage(String.valueOf(count).getBytes());
             message.setQos(currentQos);
             System.out.println(topic);
             System.out.println(message);
