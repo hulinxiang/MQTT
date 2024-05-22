@@ -1,6 +1,9 @@
 import org.eclipse.paho.client.mqttv3.*;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 import org.json.JSONObject;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 
 public class Publisher {
     private static final String BROKER_URL = "tcp://localhost:1883";
@@ -8,7 +11,10 @@ public class Publisher {
     private MqttClient client;
     private int currentQos = 0;
     private int currentDelay = 1000;
-    private static final int DURATION = 60000;
+    private static final int DURATION = 20000;
+    private MqttMessage message;
+//    private ExecutorService executor = Executors.newCachedThreadPool();  // 创建一个线程池
+
 
     public Publisher() {
         try {
@@ -32,6 +38,7 @@ public class Publisher {
                 System.out.println("Connection lost: " + cause.getMessage());
             }
 
+            // 这个只被触发了一次
             @Override
             public void messageArrived(String topic, MqttMessage message) throws Exception {
                 String payload = new String(message.getPayload());
@@ -39,8 +46,7 @@ public class Publisher {
                     JSONObject config = new JSONObject(payload);
                     currentQos = config.getInt("qos");
                     currentDelay = config.getInt("delay");
-                    String instanceId = config.getString("instanceId");
-                    System.out.println("publishdata前");
+                    int instanceId = config.getInt("instanceId");
                     publishData(instanceId); // 根据最新的配置开始发送数据
                 }
             }
@@ -56,14 +62,28 @@ public class Publisher {
         client.subscribe("request/config"); // 只订阅一个用于配置更新的主题
     }
 
-    private void publishData(String instanceId) throws MqttException, InterruptedException {
+    private void publishData(int instanceId) throws MqttException, InterruptedException {
         long startTime = System.currentTimeMillis();
         int count = 0;
+        System.out.println("我要进去了哦");
         while (System.currentTimeMillis() - startTime < DURATION) {
-            String topic = String.format("counter/%s/%d/%d", instanceId, currentQos, currentDelay);
-            MqttMessage message = new MqttMessage(String.valueOf(count).getBytes());
+            System.out.println("正在执行 count: " + count);
+            String topic = String.format("counter/%d/%d/%d", instanceId, currentQos, currentDelay);
+            message = new MqttMessage(String.valueOf(count).getBytes());
             message.setQos(currentQos);
-            client.publish(topic, message);
+            System.out.println(topic);
+            System.out.println(message);
+            try {
+                if (client.isConnected()) {
+                    client.publish(topic, message);
+                    System.out.println("Finish publishing");
+                } else {
+                    System.out.println("Client is not connected.");
+                }
+            } catch (MqttException e) {
+                System.out.println("Failed to publish message: " + e.getMessage());
+                e.printStackTrace();
+            }
             System.out.println("Published message: " + count + " to topic: " + topic);
             count++;
             if (currentDelay!=0){
