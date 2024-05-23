@@ -12,7 +12,12 @@ public class Analyser {
     private static final String BROKER_URL = "tcp://localhost:1883";
     private MqttClient client;
     private Map<String, InstanceData> dataMap = new ConcurrentHashMap<>();
-    private int currentSubQos = 0;
+    private Map<String, List<String>> systemMetricsData = new HashMap<>();
+    private int currentInstanceId = 0;
+    private int currentPublisherQoS = 0;
+    private int currentAnalyzerQoS = 0;
+    private int currentDelay = 0;
+
 
     public static void main(String[] args) {
         new Analyser().runAnalyser(5);
@@ -25,14 +30,40 @@ public class Analyser {
             connOpts.setCleanSession(true);
             client.connect(connOpts);
 
+            client.setCallback(new MqttCallback() {
+
+                @Override
+                public void connectionLost(Throwable cause) {
+                    System.out.println("Connection lost: " + cause.getMessage());
+                }
+
+                @Override
+                public void messageArrived(String topic, MqttMessage message) throws IOException {
+                    handleMessages(topic, message);
+                }
+
+                @Override
+                public void deliveryComplete(IMqttDeliveryToken token) {
+
+                }
+            });
+
+            subscribeTopics();
+
             for (int instanceId = 1; instanceId <= numInstances; instanceId++) {
                 for (int publisherQos = 0; publisherQos < 3; publisherQos++) {
                     for (int analyzerQos = 0; analyzerQos < 3; analyzerQos++) {
+                        currentInstanceId = instanceId;
+                        currentPublisherQoS = publisherQos;
+                        currentAnalyzerQoS = analyzerQos;
+
                         updateSubscription(analyzerQos);
                         for (int delay : new int[]{0, 1, 2, 4}) {
+                            currentDelay = delay;
                             sendConfigurationRequests(instanceId, publisherQos, delay);
                             Thread.sleep(70000);  // Wait for messages to accumulate
-                            calculateStatistics();
+                            writeSysMetricsToFile();
+                            calculateStatistics(instanceId, publisherQos, analyzerQos);
                         }
                     }
                 }
@@ -51,7 +82,7 @@ public class Analyser {
 
     private void updateSubscription(int qos) throws MqttException {
         // 取消订阅现有的主题
-        this.currentSubQos = qos;
+        this.currentAnalyzerQoS = qos;
         client.unsubscribe("counter/#");
         client.unsubscribe("published_count/#");
         client.unsubscribe("$SYS/#");
@@ -70,7 +101,6 @@ public class Analyser {
         client.subscribe("$SYS/#", qos);
     }
 
-
     private void subscribeTopics() {
         try {
             client.subscribe("counter/#");
@@ -87,23 +117,24 @@ public class Analyser {
         client.publish("request/delay", new MqttMessage(String.valueOf(delay).getBytes()));
     }
 
-    private void handleMessages(String topic, MqttMessage message) {
+    private void handleMessages(String topic, MqttMessage message) throws IOException {
         String payload = new String(message.getPayload());
         String[] topicParts = topic.split("/");
         if (topic.startsWith("counter")) {
-            handleCounterMessage(topicParts, payload, currentSubQos);
+            handleCounterMessage(topicParts, payload, currentAnalyzerQoS);
         } else if (topic.startsWith("published_count")) {
             handlePublishedCountMessage(topicParts, payload);
         } else if (topic.startsWith("$SYS")) {
             handleSysMetrics(topic, payload);
         }
+
     }
 
     private void handleCounterMessage(String[] topicParts, String payload, int currentSubQos) {
         if (topicParts.length != 4) {
             return;
         }
-        String key = String.join("/", Arrays.copyOf(topicParts, 3));
+        String key = String.join("/", Arrays.copyOf(topicParts, 4));
         dataMap.putIfAbsent(key, new InstanceData());
         InstanceData data = dataMap.get(key);
         synchronized (data) {
@@ -116,8 +147,9 @@ public class Analyser {
         if (topicParts.length != 4) {
             return;
         }
-        String key = String.join("/", Arrays.copyOf(topicParts, 3));
-        dataMap.putIfAbsent(key, new InstanceData());
+        String[] cur=Arrays.copyOf(topicParts,4);
+        cur[0]="counter";
+        String key = String.join("/", cur);
         InstanceData data = dataMap.get(key);
         synchronized (data) {
             data.publishedCount = Integer.parseInt(payload);
@@ -125,77 +157,102 @@ public class Analyser {
     }
 
     private void handleSysMetrics(String topic, String payload) {
-        System.out.println(topic + ": " + payload);
+        if (!systemMetricsData.containsKey(topic)) {
+            systemMetricsData.put(topic, new ArrayList<>());
+        }
+        String logEntry = String.format("System metric [%s]: %s", topic, payload);
+        systemMetricsData.get(topic).add(logEntry);
     }
 
-    private void calculateStatistics() throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter("statistics_results.txt"));
+    private void calculateStatistics(int numPublishers, int publisherQos, int analyzerQos) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter("statistics_results.txt", true));  // Append mode
+        writer.write(String.format("Number of publishers: %d\n", numPublishers));
+        writer.write(String.format("Publisher QoS: %d\n", publisherQos));
+        writer.write(String.format("Analyzer QoS: %d\n", analyzerQos));
+        System.out.println(dataMap.size());
         dataMap.forEach((key, data) -> {
             synchronized (data) {
-                for (Map.Entry<Integer, List<Message>> entry : data.messagesByQos.entrySet()) {
-                    int qos = entry.getKey();
-                    List<Message> messages = entry.getValue();
-                    messages.sort(Comparator.comparingLong(m -> m.timestamp));
+                List<Message> messages = data.messagesByQos.get(analyzerQos);
+                if (messages == null) {
+                    return;
+                }
 
-                    // 计算统计数据
-                    double totalRate = messages.size() / 60.0;
-                    double messageLossRate = 100.0 * (1 - (messages.size() / (double) data.publishedCount));
-                    double outOfOrderRate = calculateOutOfOrderRate(messages);
-                    Double medianGap = calculateMedianGap(messages);
+                messages.sort(Comparator.comparingLong(m -> m.timestamp));
 
-                    try {
-                        writer.write(String.format("Key: %s, QoS: %d\n", key, qos));
-                        writer.write(String.format("Total average rate: %.2f messages/sec\n", totalRate));
-                        writer.write(String.format("Message loss rate: %.2f%%\n", messageLossRate));
-                        writer.write(String.format("Out of order rate: %.2f%%\n", outOfOrderRate));
-                        writer.write(medianGap != null ? String.format("Median inter-message gap: %.2f ms\n", medianGap) : "Median inter-message gap: N/A\n");
-                        writer.write("-------------------------------\n");
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                long receivedMessages = messages.size();
+                double totalRate = receivedMessages / 60.0;
+                long expectedMessages = data.publishedCount;
+                double messageLossRate = (expectedMessages > 0) ? 100.0 * (1 - ((double) receivedMessages / expectedMessages)) : 0;
+
+                long outOfOrderCount = 0;
+                for (int i = 1; i < messages.size(); i++) {
+                    if (messages.get(i).value < messages.get(i - 1).value) {
+                        outOfOrderCount++;
                     }
+                }
+                double outOfOrderRate = (receivedMessages > 1) ? 100.0 * outOfOrderCount / receivedMessages : 0;
+
+                List<Double> gaps = new ArrayList<>();
+                for (int i = 1; i < messages.size(); i++) {
+                    if (messages.get(i).value == messages.get(i - 1).value + 1) {
+                        gaps.add((double) (messages.get(i).timestamp - messages.get(i - 1).timestamp));
+                    }
+                }
+                Double medianGap = gaps.isEmpty() ? null : median(gaps);
+
+                try {
+                    writer.write(String.format("Configuration: %s\n", key));
+                    writer.write(String.format("Received messages: %d\n", receivedMessages));
+                    writer.write(String.format("Expected messages: %d\n", expectedMessages));
+                    writer.write(String.format("Current number of publishers: %d\n", currentInstanceId));
+                    writer.write(String.format("Total average rate: %.2f messages/sec\n", totalRate));
+                    writer.write(String.format("Message loss rate: %.2f%%\n", messageLossRate));
+                    writer.write(String.format("Out of order rate: %.2f%%\n", outOfOrderRate));
+                    writer.write(medianGap != null ? String.format("Median inter-message gap: %.2f ms\n", medianGap) : "Median inter-message gap: N/A\n");
+                    writer.newLine();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
         });
+        writer.write("--------------------------------------------------\n");
+        dataMap.clear();
         writer.close();
     }
 
-    private double calculateOutOfOrderRate(List<Message> messages) {
-        if (messages.size() < 2) {
-            return 0.0;
-        }
-        int outOfOrderCount = 0;
-        Message previousMessage = messages.get(0);
-
-        for (int i = 1; i < messages.size(); i++) {
-            Message currentMessage = messages.get(i);
-            if (currentMessage.value < previousMessage.value) {
-                outOfOrderCount++;
+    private void writeSysMetricsToFile() throws IOException {
+        String sysMetricsFilename = "sys_metrics.txt";
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(sysMetricsFilename, true))) {
+            for (Map.Entry<String, List<String>> entry : systemMetricsData.entrySet()) {
+                for (String logEntry : entry.getValue()) {
+                    writer.write(logEntry);
+                    writer.newLine();
+                }
             }
-            previousMessage = currentMessage;
+            writer.write(String.format("Current number of publishers: %d\n", currentInstanceId));
+            writer.write(String.format("Current Publisher QoS: %d\n", currentPublisherQoS));
+            writer.write(String.format("Current Analyzer QoS: %d\n", currentAnalyzerQoS));
+            writer.write(String.format("Current Delay: %d\n", currentDelay));
+            writer.write("--------------------------------------------------\n");
+            writer.flush();
+            systemMetricsData.clear();  // Clear data after writing
+        } catch (IOException e) {
+            System.err.println("Error writing system metrics: " + e.getMessage());
+            throw e;
         }
-
-        return 100.0 * outOfOrderCount / messages.size();
     }
 
-    private Double calculateMedianGap(List<Message> messages) {
-        if (messages.size() < 2) {
-            return null;
-        }
-        List<Double> gaps = new ArrayList<>();
-
-        for (int i = 1; i < messages.size(); i++) {
-            double gap = messages.get(i).timestamp - messages.get(i - 1).timestamp;
-            gaps.add(gap);
-        }
-
-        Collections.sort(gaps);
-        if (gaps.size() % 2 == 1) {
-            return gaps.get(gaps.size() / 2);
+    // Helper method to calculate median
+    private Double median(List<Double> values) {
+        Collections.sort(values);
+        int middle = values.size() / 2;
+        if (values.size() % 2 == 1) {
+            return values.get(middle);
         } else {
-            int midIndex = gaps.size() / 2;
-            return (gaps.get(midIndex - 1) + gaps.get(midIndex)) / 2.0;
+            return (values.get(middle - 1) + values.get(middle)) / 2.0;
         }
     }
+
 
     static class InstanceData {
         int publishedCount;

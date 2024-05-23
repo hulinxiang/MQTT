@@ -1,0 +1,12 @@
+Number of publishers: 1
+Publisher QoS: 0
+Analyzer QoS: 0
+Configuration: counter/1/0/0
+Received messages: 1714298
+Expected messages: 1714298
+Total average rate: 28571.63 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 0.00 ms
+
+--------------------------------------------------

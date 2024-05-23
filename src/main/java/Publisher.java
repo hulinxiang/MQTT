@@ -46,7 +46,7 @@ public class Publisher {
                     } else if (topic.startsWith("request/")) {
                         String key = topic.split("/")[1];
                         sharedSettings.put(key, new String(message.getPayload()));
-                        System.out.println("Updated shared settings with " + key + ": " + new String(message.getPayload())+"-----------------");
+//                        System.out.println("Updated shared settings with " + key + ": " + new String(message.getPayload())+"-----------------");
 
                         synchronized (lock) {
                             updateCount++;
@@ -90,7 +90,7 @@ public class Publisher {
                 }
                 String delay = sharedSettings.getOrDefault("delay", "1000");
                 String qos = sharedSettings.getOrDefault("qos", "0");
-                System.out.println("Ready to publish with delay: " + delay + ", qos: " + qos);
+//                System.out.println("Ready to publish with delay: " + delay + ", qos: " + qos);
                 publishMessages(client, Integer.parseInt(delay), Integer.parseInt(qos), instanceId);
                 Thread.sleep(1000);
             }
@@ -110,7 +110,7 @@ public class Publisher {
             Thread.sleep(delay);
             counter++;
         }
-        System.out.println("finally" + counter);
+//        System.out.println("finally" + counter);
         MqttMessage message = new MqttMessage(Integer.toString(counter).getBytes());
         message.setQos(qos);
         client.publish(String.format("published_count/%d/%d/%d", instanceId, qos, delay), message);
