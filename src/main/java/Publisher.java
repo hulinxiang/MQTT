@@ -1,29 +1,25 @@
-import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
-import org.eclipse.paho.client.mqttv3.MqttCallback;
-import org.eclipse.paho.client.mqttv3.MqttClient;
-import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
-import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.eclipse.paho.client.mqttv3.*;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Publisher {
 
-    public static void main(String[] args) {
-        ExecutorService executorService = Executors.newFixedThreadPool(5);
-        for (int i = 1; i <= 5; i++) {
-            int finalI = i;
-            executorService.submit(() -> runPublisher(finalI));
-        }
-    }
+    private static final ExecutorService executorService = Executors.newCachedThreadPool();
+    private static final AtomicInteger currentInstanceCount = new AtomicInteger(0);
+    private static final Map<String, String> sharedSettings = new HashMap<>();  // Shared settings for delay and qos
 
-    private static void runPublisher(int instanceId) {
+    public static void main(String[] args) {
         try {
-            Map<String, String> userdata = new HashMap<>();
             MqttClient client = new MqttClient("tcp://localhost:1883", MqttClient.generateClientId(), new MemoryPersistence());
+            MqttConnectOptions options = new MqttConnectOptions();
+            options.setCleanSession(true);
+            client.connect(options);
+
             client.setCallback(new MqttCallback() {
                 @Override
                 public void connectionLost(Throwable cause) {
@@ -32,11 +28,20 @@ public class Publisher {
 
                 @Override
                 public void messageArrived(String topic, MqttMessage message) throws Exception {
-                    String[] topicParts = topic.split("/");
-                    if (topicParts.length == 2) {
-                        String param = topicParts[1];
-                        userdata.put(param, new String(message.getPayload()));
-                        userdata.put("updated", "true");
+                    if ("request/instancecount".equals(topic)) {
+                        int requestedCount = Integer.parseInt(new String(message.getPayload()));
+                        int currentCount = currentInstanceCount.get();
+                        while (currentCount < requestedCount) {
+                            System.out.println("Create New Instance");
+                            int newInstanceId = currentCount + 1;
+                            executorService.submit(() -> runPublisher(newInstanceId));
+                            currentInstanceCount.incrementAndGet();
+                            currentCount++;
+                        }
+                    } else if (topic.startsWith("request/")) {
+                        String key = topic.split("/")[1];
+                        sharedSettings.put(key, new String(message.getPayload()));
+                        System.out.println("Updated shared settings with " + key + ": " + new String(message.getPayload()));
                     }
                 }
 
@@ -46,25 +51,32 @@ public class Publisher {
                 }
             });
 
+            client.subscribe("request/#");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void runPublisher(int instanceId) {
+        try {
+            System.out.println("Enter runPublisher Method");
+            MqttClient client = new MqttClient("tcp://localhost:1883", MqttClient.generateClientId(), new MemoryPersistence());
             MqttConnectOptions options = new MqttConnectOptions();
             options.setCleanSession(true);
             client.connect(options);
             client.subscribe("request/#");
 
             while (true) {
-                if ("true".equals(userdata.get("updated")) && userdata.containsKey("delay") && userdata.containsKey("qos")) {
-                    userdata.put("updated", "false");
-                    int delay = Integer.parseInt(userdata.getOrDefault("delay", "1000"));  // Default delay 1000 ms
-                    int qos = Integer.parseInt(userdata.getOrDefault("qos", "0"));  // Default QoS 0
-                    publishMessages(client, delay, qos, instanceId);
-                }
+                String delay = sharedSettings.getOrDefault("delay", "1000");
+                String qos = sharedSettings.getOrDefault("qos", "0");
+                System.out.println("Ready to publish with delay: " + delay + ", qos: " + qos);
+                publishMessages(client, Integer.parseInt(delay), Integer.parseInt(qos), instanceId);
                 Thread.sleep(1000);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
 
     private static void publishMessages(MqttClient client, int delay, int qos, int instanceId) throws Exception {
         long endTime = System.currentTimeMillis() + 60000;
@@ -77,9 +89,9 @@ public class Publisher {
             Thread.sleep(delay);
             counter++;
         }
-        System.out.println("finally" + counter);
+        System.out.println("The final count is :" + counter);
         MqttMessage message = new MqttMessage(Integer.toString(counter).getBytes());
-        message.setQos(qos); // 设置QoS
+        message.setQos(qos);
         client.publish(String.format("published_count/%d/%d/%d", instanceId, qos, delay), message);
     }
 }

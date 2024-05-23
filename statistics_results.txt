@@ -1,0 +1,108 @@
+Key: counter/1/0, QoS: 0
+Total average rate: 51735.20 messages/sec
+Message loss rate: -Infinity%
+Out of order rate: 0.00%
+Median inter-message gap: 0.00 ms
+-------------------------------
+Key: counter/1/0, QoS: 1
+Total average rate: 0.00 messages/sec
+Message loss rate: NaN%
+Out of order rate: 0.00%
+Median inter-message gap: N/A
+-------------------------------
+Key: counter/1/0, QoS: 2
+Total average rate: 0.00 messages/sec
+Message loss rate: NaN%
+Out of order rate: 0.00%
+Median inter-message gap: N/A
+-------------------------------
+Key: counter/1/1, QoS: 0
+Total average rate: 15035.88 messages/sec
+Message loss rate: -Infinity%
+Out of order rate: 0.00%
+Median inter-message gap: 0.00 ms
+-------------------------------
+Key: counter/1/1, QoS: 1
+Total average rate: 0.00 messages/sec
+Message loss rate: NaN%
+Out of order rate: 0.00%
+Median inter-message gap: N/A
+-------------------------------
+Key: counter/1/1, QoS: 2
+Total average rate: 0.00 messages/sec
+Message loss rate: NaN%
+Out of order rate: 0.00%
+Median inter-message gap: N/A
+-------------------------------
+Key: counter/1/2, QoS: 0
+Total average rate: 9994.37 messages/sec
+Message loss rate: -Infinity%
+Out of order rate: 0.00%
+Median inter-message gap: 0.00 ms
+-------------------------------
+Key: counter/1/2, QoS: 1
+Total average rate: 0.00 messages/sec
+Message loss rate: NaN%
+Out of order rate: 0.00%
+Median inter-message gap: N/A
+-------------------------------
+Key: counter/1/2, QoS: 2
+Total average rate: 0.00 messages/sec
+Message loss rate: NaN%
+Out of order rate: 0.00%
+Median inter-message gap: N/A
+-------------------------------
+Key: published_count/1/2, QoS: 0
+Total average rate: 0.00 messages/sec
+Message loss rate: 100.00%
+Out of order rate: 0.00%
+Median inter-message gap: N/A
+-------------------------------
+Key: published_count/1/2, QoS: 1
+Total average rate: 0.00 messages/sec
+Message loss rate: 100.00%
+Out of order rate: 0.00%
+Median inter-message gap: N/A
+-------------------------------
+Key: published_count/1/2, QoS: 2
+Total average rate: 0.00 messages/sec
+Message loss rate: 100.00%
+Out of order rate: 0.00%
+Median inter-message gap: N/A
+-------------------------------
+Key: published_count/1/1, QoS: 0
+Total average rate: 0.00 messages/sec
+Message loss rate: 100.00%
+Out of order rate: 0.00%
+Median inter-message gap: N/A
+-------------------------------
+Key: published_count/1/1, QoS: 1
+Total average rate: 0.00 messages/sec
+Message loss rate: 100.00%
+Out of order rate: 0.00%
+Median inter-message gap: N/A
+-------------------------------
+Key: published_count/1/1, QoS: 2
+Total average rate: 0.00 messages/sec
+Message loss rate: 100.00%
+Out of order rate: 0.00%
+Median inter-message gap: N/A
+-------------------------------
+Key: published_count/1/0, QoS: 0
+Total average rate: 0.00 messages/sec
+Message loss rate: 100.00%
+Out of order rate: 0.00%
+Median inter-message gap: N/A
+-------------------------------
+Key: published_count/1/0, QoS: 1
+Total average rate: 0.00 messages/sec
+Message loss rate: 100.00%
+Out of order rate: 0.00%
+Median inter-message gap: N/A
+-------------------------------
+Key: published_count/1/0, QoS: 2
+Total average rate: 0.00 messages/sec
+Message loss rate: 100.00%
+Out of order rate: 0.00%
+Median inter-message gap: N/A
+-------------------------------
