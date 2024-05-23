@@ -13,6 +13,11 @@ public class Publisher {
     private static final AtomicInteger currentInstanceCount = new AtomicInteger(0);
     private static final Map<String, String> sharedSettings = new HashMap<>();  // Shared settings for delay and qos
 
+    private static final Object lock = new Object();
+    private static int updateCount = 0;  // Track the number of settings updated
+    private static final int expectedUpdates = 2;  // Expected number of updates (qos and delay)
+    private static boolean settingsUpdated = false;
+
     public static void main(String[] args) {
         try {
             MqttClient client = new MqttClient("tcp://localhost:1883", MqttClient.generateClientId(), new MemoryPersistence());
@@ -41,13 +46,23 @@ public class Publisher {
                     } else if (topic.startsWith("request/")) {
                         String key = topic.split("/")[1];
                         sharedSettings.put(key, new String(message.getPayload()));
-//                        System.out.println("Updated shared settings with " + key + ": " + new String(message.getPayload()));
+                        System.out.println("Updated shared settings with " + key + ": " + new String(message.getPayload())+"-----------------");
+
+                        synchronized (lock) {
+                            updateCount++;
+                            if (updateCount == expectedUpdates) {
+                                settingsUpdated = true;
+                                lock.notifyAll();  // Notify that all settings have been updated
+                                updateCount = 0;  // Reset the update count for next updates
+                            }
+                        }
+
                     }
                 }
 
                 @Override
                 public void deliveryComplete(IMqttDeliveryToken token) {
-                    // Message delivery complete
+
                 }
             });
 
@@ -67,9 +82,15 @@ public class Publisher {
             client.subscribe("request/#");
 
             while (true) {
+                synchronized (lock) {
+                    while (!settingsUpdated) {  // Use while loop to avoid spurious wakeup
+                        lock.wait();  // Wait until all settings are updated
+                    }
+                    settingsUpdated = false;  // Reset flag after settings are confirmed to be updated
+                }
                 String delay = sharedSettings.getOrDefault("delay", "1000");
                 String qos = sharedSettings.getOrDefault("qos", "0");
-//                System.out.println("Ready to publish with delay: " + delay + ", qos: " + qos);
+                System.out.println("Ready to publish with delay: " + delay + ", qos: " + qos);
                 publishMessages(client, Integer.parseInt(delay), Integer.parseInt(qos), instanceId);
                 Thread.sleep(1000);
             }
@@ -89,7 +110,7 @@ public class Publisher {
             Thread.sleep(delay);
             counter++;
         }
-//        System.out.println("finally" + counter);
+        System.out.println("finally" + counter);
         MqttMessage message = new MqttMessage(Integer.toString(counter).getBytes());
         message.setQos(qos);
         client.publish(String.format("published_count/%d/%d/%d", instanceId, qos, delay), message);

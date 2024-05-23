@@ -25,36 +25,15 @@ public class Analyser {
             connOpts.setCleanSession(true);
             client.connect(connOpts);
 
-            client.setCallback(new MqttCallbackExtended() {
-                @Override
-                public void connectComplete(boolean reconnect, String serverURI) {
-                    subscribeTopics();
-                }
-
-                @Override
-                public void connectionLost(Throwable cause) {
-                    System.out.println("Connection lost: " + cause.getMessage());
-                }
-
-                @Override
-                public void messageArrived(String topic, MqttMessage message) throws Exception {
-                    handleMessages(topic, message);
-                }
-
-                @Override
-                public void deliveryComplete(IMqttDeliveryToken token) {
-                }
-            });
-
-            // Configuration loop
-//            for (int subQos = 0; subQos < 3; subQos++) {
-//                updateSubscription(subQos);
             for (int instanceId = 1; instanceId <= numInstances; instanceId++) {
-                for (int qos = 0; qos < 3; qos++) {
-                    for (int delay : new int[]{0, 1, 2, 4}) {
-                        sendConfigurationRequests(instanceId, qos, delay);
-                        Thread.sleep(70000);  // Wait for messages to accumulate
-                        calculateStatistics();
+                for (int publisherQos = 0; publisherQos < 3; publisherQos++) {
+                    for (int analyzerQos = 0; analyzerQos < 3; analyzerQos++) {
+                        updateSubscription(analyzerQos);
+                        for (int delay : new int[]{0, 1, 2, 4}) {
+                            sendConfigurationRequests(instanceId, publisherQos, delay);
+                            Thread.sleep(70000);  // Wait for messages to accumulate
+                            calculateStatistics();
+                        }
                     }
                 }
             }
