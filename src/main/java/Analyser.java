@@ -47,19 +47,17 @@ public class Analyser {
             });
 
             // Configuration loop
-            for (int subQos = 0; subQos < 3; subQos++) {
-                updateSubscription(subQos);
-                for (int instanceId = 1; instanceId <= numInstances; instanceId++) {
-                    for (int qos = 0; qos < 3; qos++) {
-                        for (int delay : new int[]{0, 1, 2, 4}) {
-                            sendConfigurationRequests(instanceId, qos, delay);
-                            Thread.sleep(70000);  // Wait for messages to accumulate
-                            calculateStatistics();
-                        }
+//            for (int subQos = 0; subQos < 3; subQos++) {
+//                updateSubscription(subQos);
+            for (int instanceId = 1; instanceId <= numInstances; instanceId++) {
+                for (int qos = 0; qos < 3; qos++) {
+                    for (int delay : new int[]{0, 1, 2, 4}) {
+                        sendConfigurationRequests(instanceId, qos, delay);
+                        Thread.sleep(70000);  // Wait for messages to accumulate
+                        calculateStatistics();
                     }
                 }
             }
-
         } catch (MqttException | InterruptedException | IOException e) {
             e.printStackTrace();
         } finally {

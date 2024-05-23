@@ -32,7 +32,7 @@ public class Publisher {
                         int requestedCount = Integer.parseInt(new String(message.getPayload()));
                         int currentCount = currentInstanceCount.get();
                         while (currentCount < requestedCount) {
-                            System.out.println("Create New Instance");
+//                            System.out.println("Create New Instance");
                             int newInstanceId = currentCount + 1;
                             executorService.submit(() -> runPublisher(newInstanceId));
                             currentInstanceCount.incrementAndGet();
@@ -41,7 +41,7 @@ public class Publisher {
                     } else if (topic.startsWith("request/")) {
                         String key = topic.split("/")[1];
                         sharedSettings.put(key, new String(message.getPayload()));
-                        System.out.println("Updated shared settings with " + key + ": " + new String(message.getPayload()));
+//                        System.out.println("Updated shared settings with " + key + ": " + new String(message.getPayload()));
                     }
                 }
 
@@ -59,7 +59,7 @@ public class Publisher {
 
     private static void runPublisher(int instanceId) {
         try {
-            System.out.println("Enter runPublisher Method");
+//            System.out.println("Enter runPublisher Method");
             MqttClient client = new MqttClient("tcp://localhost:1883", MqttClient.generateClientId(), new MemoryPersistence());
             MqttConnectOptions options = new MqttConnectOptions();
             options.setCleanSession(true);
@@ -69,7 +69,7 @@ public class Publisher {
             while (true) {
                 String delay = sharedSettings.getOrDefault("delay", "1000");
                 String qos = sharedSettings.getOrDefault("qos", "0");
-                System.out.println("Ready to publish with delay: " + delay + ", qos: " + qos);
+//                System.out.println("Ready to publish with delay: " + delay + ", qos: " + qos);
                 publishMessages(client, Integer.parseInt(delay), Integer.parseInt(qos), instanceId);
                 Thread.sleep(1000);
             }
@@ -89,7 +89,7 @@ public class Publisher {
             Thread.sleep(delay);
             counter++;
         }
-        System.out.println("The final count is :" + counter);
+//        System.out.println("finally" + counter);
         MqttMessage message = new MqttMessage(Integer.toString(counter).getBytes());
         message.setQos(qos);
         client.publish(String.format("published_count/%d/%d/%d", instanceId, qos, delay), message);
