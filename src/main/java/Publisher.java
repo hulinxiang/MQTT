@@ -1,106 +1,85 @@
-import org.eclipse.paho.client.mqttv3.*;
+import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
+import org.eclipse.paho.client.mqttv3.MqttCallback;
+import org.eclipse.paho.client.mqttv3.MqttClient;
+import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
-import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-
 public class Publisher {
-    private static final String BROKER_URL = "tcp://localhost:1883";
-    private static final String CLIENT_ID = "publish_client";
-    private MqttClient client;
-    private int currentQos = 0;
-    private int currentDelay = 1000;
-    private static final int DURATION = 60000;
-    private MqttMessage message;
-    private ExecutorService executor = Executors.newCachedThreadPool();
-    // 创建一个线程池
 
+    public static void main(String[] args) {
+        ExecutorService executorService = Executors.newFixedThreadPool(5);
+        for (int i = 1; i <= 5; i++) {
+            int finalI = i;
+            executorService.submit(() -> runPublisher(finalI));
+        }
+    }
 
-    public Publisher() {
+    private static void runPublisher(int instanceId) {
         try {
-            connect();
-            subscribeToRequestTopics();
+            Map<String, String> userdata = new HashMap<>();
+            MqttClient client = new MqttClient("tcp://localhost:1883", MqttClient.generateClientId(), new MemoryPersistence());
+            client.setCallback(new MqttCallback() {
+                @Override
+                public void connectionLost(Throwable cause) {
+                    // Handle connection lost
+                }
+
+                @Override
+                public void messageArrived(String topic, MqttMessage message) throws Exception {
+                    String[] topicParts = topic.split("/");
+                    if (topicParts.length == 2) {
+                        String param = topicParts[1];
+                        userdata.put(param, new String(message.getPayload()));
+                        userdata.put("updated", "true");
+                    }
+                }
+
+                @Override
+                public void deliveryComplete(IMqttDeliveryToken token) {
+                    // Message delivery complete
+                }
+            });
+
+            MqttConnectOptions options = new MqttConnectOptions();
+            options.setCleanSession(true);
+            client.connect(options);
+            client.subscribe("request/#");
+
+            while (true) {
+                if ("true".equals(userdata.get("updated")) && userdata.containsKey("delay") && userdata.containsKey("qos")) {
+                    userdata.put("updated", "false");
+                    int delay = Integer.parseInt(userdata.getOrDefault("delay", "1000"));  // Default delay 1000 ms
+                    int qos = Integer.parseInt(userdata.getOrDefault("qos", "0"));  // Default QoS 0
+                    publishMessages(client, delay, qos, instanceId);
+                }
+                Thread.sleep(1000);
+            }
         } catch (Exception e) {
-            System.out.println("Error in connection or subscription: " + e.getMessage());
             e.printStackTrace();
         }
     }
 
-    private void connect() throws MqttException {
-        client = new MqttClient(BROKER_URL, CLIENT_ID, new MemoryPersistence());
-        MqttConnectOptions options = new MqttConnectOptions();
-        options.setCleanSession(true);
-        options.setMaxInflight(10000);
-        options.setConnectionTimeout(60);
-        options.setKeepAliveInterval(60);
-        client.connect(options);
-        client.setCallback(new MqttCallback() {
-            @Override
-            public void connectionLost(Throwable cause) {
-                System.out.println("Connection lost: " + cause.getMessage());
-            }
 
-            // 这个只被触发了一次
-            @Override
-            public void messageArrived(String topic, MqttMessage message) throws Exception {
-                String payload = new String(message.getPayload());
-                if ("request/config".equals(topic)) {
-                    JSONObject config = new JSONObject(payload);
-                    currentQos = config.getInt("qos");
-                    currentDelay = config.getInt("delay");
-                    int instanceId = config.getInt("instanceId");
-                    publishData(instanceId); // 根据最新的配置开始发送数据
-                }
-            }
-
-            @Override
-            public void deliveryComplete(IMqttDeliveryToken token) {
-                System.out.println("Delivery complete. Token: " + token.getResponse());
-            }
-        });
-    }
-
-    private void subscribeToRequestTopics() throws MqttException {
-        client.subscribe("request/config"); // 只订阅一个用于配置更新的主题
-    }
-
-    private void publishData(int instanceId) throws InterruptedException {
-        long startTime = System.currentTimeMillis();
-        int count = 0;
-        while (System.currentTimeMillis() - startTime < DURATION) {
-            System.out.println("count: " + count);
-            String topic = String.format("counter/%d/%d/%d", instanceId, currentQos, currentDelay);
-            message = new MqttMessage(String.valueOf(count).getBytes());
-            message.setQos(currentQos);
-            System.out.println(topic);
-            System.out.println(message);
-
-            // 使用线程池异步发送消息
-            int finalCount = count;
-            executor.submit(() -> {
-                try {
-                    if (client.isConnected()) {
-                        client.publish(topic, message);
-                        System.out.println("Finish publishing message: " + finalCount + " to topic: " + topic);
-                    } else {
-                        System.out.println("Client is not connected.");
-                    }
-                } catch (MqttException e) {
-                    System.out.println("Failed to publish message: " + e.getMessage());
-                    e.printStackTrace();
-                }
-            });
-
-            count++;
-            if (currentDelay != 0) {
-                Thread.sleep(currentDelay);
-            }
+    private static void publishMessages(MqttClient client, int delay, int qos, int instanceId) throws Exception {
+        long endTime = System.currentTimeMillis() + 60000;
+        int counter = 0;
+        while (System.currentTimeMillis() < endTime) {
+            String topic = String.format("counter/%d/%d/%d", instanceId, qos, delay);
+            MqttMessage message = new MqttMessage(Integer.toString(counter).getBytes());
+            message.setQos(qos);
+            client.publish(topic, message);
+            Thread.sleep(delay);
+            counter++;
         }
-    }
-
-    public static void main(String[] args) {
-        new Publisher();
+        System.out.println("finally" + counter);
+        MqttMessage message = new MqttMessage(Integer.toString(counter).getBytes());
+        message.setQos(qos); // 设置QoS
+        client.publish(String.format("published_count/%d/%d/%d", instanceId, qos, delay), message);
     }
 }

@@ -1,122 +1,245 @@
 import org.eclipse.paho.client.mqttv3.*;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
-import org.json.JSONObject;
 
+import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
-
 public class Analyser {
+
     private static final String BROKER_URL = "tcp://localhost:1883";
-    private static final String CLIENT_ID = "subscribe_client";
     private MqttClient client;
-    private static final int[] QOS_OPTIONS = {0, 1, 2};
-    private static final int[] DELAY_OPTIONS = {0, 1, 2, 4};
-    private static final int INSTANCE_COUNT = 5;
-    private static final int PUBLISH_DURATION = 60000;
+    private Map<String, InstanceData> dataMap = new ConcurrentHashMap<>();
+    private int currentSubQos = 0;
 
-    private ConcurrentHashMap<String, Integer> lastMessageCount = new ConcurrentHashMap<>();
-    private static final String MESSAGE_RATE_CSV_FILE = "./message_rates.csv";
+    public static void main(String[] args) {
+        new Analyser().runAnalyser(5);
+    }
 
-    public Analyser() {
+    public void runAnalyser(int numInstances) {
         try {
-            connect();
-            subscribeToTopics();
-            sendAllConfigurationUpdates(); // 发送所有可能的配置更新
-        } catch (Exception e) {
-            System.out.println("Error in connection or subscription: " + e.getMessage());
+            client = new MqttClient(BROKER_URL, MqttClient.generateClientId(), new MemoryPersistence());
+            MqttConnectOptions connOpts = new MqttConnectOptions();
+            connOpts.setCleanSession(true);
+            client.connect(connOpts);
+
+            client.setCallback(new MqttCallbackExtended() {
+                @Override
+                public void connectComplete(boolean reconnect, String serverURI) {
+                    subscribeTopics();
+                }
+
+                @Override
+                public void connectionLost(Throwable cause) {
+                    System.out.println("Connection lost: " + cause.getMessage());
+                }
+
+                @Override
+                public void messageArrived(String topic, MqttMessage message) throws Exception {
+                    handleMessages(topic, message);
+                }
+
+                @Override
+                public void deliveryComplete(IMqttDeliveryToken token) {
+                }
+            });
+
+            // Configuration loop
+            for (int subQos = 0; subQos < 3; subQos++) {
+                updateSubscription(subQos);
+                for (int instanceId = 1; instanceId <= numInstances; instanceId++) {
+                    for (int qos = 0; qos < 3; qos++) {
+                        for (int delay : new int[]{0, 1, 2, 4}) {
+                            sendConfigurationRequests(instanceId, qos, delay);
+                            Thread.sleep(70000);  // Wait for messages to accumulate
+                            calculateStatistics();
+                        }
+                    }
+                }
+            }
+
+        } catch (MqttException | InterruptedException | IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                client.disconnect();
+            } catch (MqttException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+    private void updateSubscription(int qos) throws MqttException {
+        // 取消订阅现有的主题
+        this.currentSubQos = qos;
+        client.unsubscribe("counter/#");
+        client.unsubscribe("published_count/#");
+        client.unsubscribe("$SYS/#");
+
+        // 断开连接
+        client.disconnect();
+
+        // 重新连接
+        MqttConnectOptions connOpts = new MqttConnectOptions();
+        connOpts.setCleanSession(true);
+        client.connect(connOpts);
+
+        // 根据新的QoS重新订阅主题
+        client.subscribe("counter/#", qos);
+        client.subscribe("published_count/#", qos);
+        client.subscribe("$SYS/#", qos);
+    }
+
+
+    private void subscribeTopics() {
+        try {
+            client.subscribe("counter/#");
+            client.subscribe("published_count/#");
+            client.subscribe("$SYS/#");
+        } catch (MqttException e) {
             e.printStackTrace();
         }
     }
 
-    private void connect() throws MqttException {
-        client = new MqttClient(BROKER_URL, CLIENT_ID, new MemoryPersistence());
-        MqttConnectOptions options = new MqttConnectOptions();
-        options.setConnectionTimeout(60);
-        options.setKeepAliveInterval(60);
-        client.connect(options);
-        client.setCallback(new MqttCallback() {
-            @Override
-            public void connectionLost(Throwable cause) {
-                System.out.println("Connection lost: " + cause.getMessage());
-            }
-
-            @Override
-            public void messageArrived(String topic, MqttMessage message) {
-                int messageNumber = Integer.parseInt(new String(message.getPayload()));
-                lastMessageCount.put(topic, messageNumber + 1);
-            }
-
-            @Override
-            public void deliveryComplete(IMqttDeliveryToken token) {
-                System.out.println("Delivery complete. Token: " + token.getResponse());
-            }
-        });
+    private void sendConfigurationRequests(int instanceId, int qos, int delay) throws MqttException {
+        client.publish("request/instancecount", new MqttMessage(String.valueOf(instanceId).getBytes()));
+        client.publish("request/qos", new MqttMessage(String.valueOf(qos).getBytes()));
+        client.publish("request/delay", new MqttMessage(String.valueOf(delay).getBytes()));
     }
 
-    private void subscribeToTopics() throws MqttException {
-        for (int instance = 1; instance <= INSTANCE_COUNT; instance++) {
-            for (int pubQos : QOS_OPTIONS) {
-                for (int delay : DELAY_OPTIONS) {
-                    String topic = String.format("counter/%d/%d/%d", instance, pubQos, delay);
-                    for (int subQos : QOS_OPTIONS) {
-                        client.subscribe(topic, subQos);
-                        System.out.println("Subscribed to topic: " + topic + " with Subscription QoS " + subQos);
+    private void handleMessages(String topic, MqttMessage message) {
+        String payload = new String(message.getPayload());
+        String[] topicParts = topic.split("/");
+        if (topic.startsWith("counter")) {
+            handleCounterMessage(topicParts, payload, currentSubQos);
+        } else if (topic.startsWith("published_count")) {
+            handlePublishedCountMessage(topicParts, payload);
+        } else if (topic.startsWith("$SYS")) {
+            handleSysMetrics(topic, payload);
+        }
+    }
+
+    private void handleCounterMessage(String[] topicParts, String payload, int currentSubQos) {
+        if (topicParts.length != 4) {
+            return;
+        }
+        String key = String.join("/", Arrays.copyOf(topicParts, 3));
+        dataMap.putIfAbsent(key, new InstanceData());
+        InstanceData data = dataMap.get(key);
+        synchronized (data) {
+            data.messagesByQos.get(currentSubQos).add(new Message(Integer.parseInt(payload), System.currentTimeMillis()));
+        }
+    }
+
+
+    private void handlePublishedCountMessage(String[] topicParts, String payload) {
+        if (topicParts.length != 4) {
+            return;
+        }
+        String key = String.join("/", Arrays.copyOf(topicParts, 3));
+        dataMap.putIfAbsent(key, new InstanceData());
+        InstanceData data = dataMap.get(key);
+        synchronized (data) {
+            data.publishedCount = Integer.parseInt(payload);
+        }
+    }
+
+    private void handleSysMetrics(String topic, String payload) {
+        System.out.println(topic + ": " + payload);
+    }
+
+    private void calculateStatistics() throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter("statistics_results.txt"));
+        dataMap.forEach((key, data) -> {
+            synchronized (data) {
+                for (Map.Entry<Integer, List<Message>> entry : data.messagesByQos.entrySet()) {
+                    int qos = entry.getKey();
+                    List<Message> messages = entry.getValue();
+                    messages.sort(Comparator.comparingLong(m -> m.timestamp));
+
+                    // 计算统计数据
+                    double totalRate = messages.size() / 60.0;
+                    double messageLossRate = 100.0 * (1 - (messages.size() / (double) data.publishedCount));
+                    double outOfOrderRate = calculateOutOfOrderRate(messages);
+                    Double medianGap = calculateMedianGap(messages);
+
+                    try {
+                        writer.write(String.format("Key: %s, QoS: %d\n", key, qos));
+                        writer.write(String.format("Total average rate: %.2f messages/sec\n", totalRate));
+                        writer.write(String.format("Message loss rate: %.2f%%\n", messageLossRate));
+                        writer.write(String.format("Out of order rate: %.2f%%\n", outOfOrderRate));
+                        writer.write(medianGap != null ? String.format("Median inter-message gap: %.2f ms\n", medianGap) : "Median inter-message gap: N/A\n");
+                        writer.write("-------------------------------\n");
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
                 }
             }
+        });
+        writer.close();
+    }
+
+    private double calculateOutOfOrderRate(List<Message> messages) {
+        if (messages.size() < 2) {
+            return 0.0;
+        }
+        int outOfOrderCount = 0;
+        Message previousMessage = messages.get(0);
+
+        for (int i = 1; i < messages.size(); i++) {
+            Message currentMessage = messages.get(i);
+            if (currentMessage.value < previousMessage.value) {
+                outOfOrderCount++;
+            }
+            previousMessage = currentMessage;
+        }
+
+        return 100.0 * outOfOrderCount / messages.size();
+    }
+
+    private Double calculateMedianGap(List<Message> messages) {
+        if (messages.size() < 2) {
+            return null;
+        }
+        List<Double> gaps = new ArrayList<>();
+
+        for (int i = 1; i < messages.size(); i++) {
+            double gap = messages.get(i).timestamp - messages.get(i - 1).timestamp;
+            gaps.add(gap);
+        }
+
+        Collections.sort(gaps);
+        if (gaps.size() % 2 == 1) {
+            return gaps.get(gaps.size() / 2);
+        } else {
+            int midIndex = gaps.size() / 2;
+            return (gaps.get(midIndex - 1) + gaps.get(midIndex)) / 2.0;
         }
     }
 
+    static class InstanceData {
+        int publishedCount;
+        Map<Integer, List<Message>> messagesByQos = new HashMap<>();
 
-    private void sendAllConfigurationUpdates() throws MqttException, InterruptedException {
-        // 准备所有配置更新
-        for (int instance = 1; instance <= INSTANCE_COUNT; instance++) {
-            for (int qos : QOS_OPTIONS) {
-                for (int delay : DELAY_OPTIONS) {
-                    JSONObject config = new JSONObject();
-                    config.put("qos", qos);
-                    config.put("delay", delay);
-                    config.put("instanceId", instance);
-                    updateConfiguration(config.toString());
-                }
+        public InstanceData() {
+            this.publishedCount = 0;
+            for (int i = 0; i < 3; i++) {
+                messagesByQos.put(i, new ArrayList<>());
             }
         }
     }
 
-    private void updateConfiguration(String config) throws MqttException, InterruptedException {
-        client.publish("request/config", new MqttMessage(config.getBytes()));
-        Thread.sleep(PUBLISH_DURATION);
-    }
 
-    public void printMessageCounts() {
-        lastMessageCount.forEach((topic, count) -> {
-            System.out.println("Topic: " + topic + " has received " + (count + 1) + " messages.");
-        });
-    }
+    static class Message {
+        int value;
+        long timestamp;
 
-    public void saveMessageRatesToCsv() {
-        try (FileWriter writer = new FileWriter(MESSAGE_RATE_CSV_FILE)) {
-            writer.append("Topic, Average Rate (messages/sec)\n");
-            lastMessageCount.forEach((topic, count) -> {
-                try {
-                    double averageRate = (count + 1) / 60.0; // 计算平均率
-                    writer.append(topic).append(", ").append(String.valueOf(averageRate)).append("\n");
-                } catch (IOException e) {
-                    System.err.println("Error writing to CSV for topic " + topic + ": " + e.getMessage());
-                }
-            });
-            System.out.println("CSV file has been created: " + MESSAGE_RATE_CSV_FILE);
-        } catch (IOException e) {
-            System.err.println("Error creating CSV file: " + e.getMessage());
+        public Message(int value, long timestamp) {
+            this.value = value;
+            this.timestamp = timestamp;
         }
-    }
-
-
-    public static void main(String[] args) {
-        Analyser analyser = new Analyser();
-        analyser.printMessageCounts();
-        analyser.saveMessageRatesToCsv();
     }
 }
