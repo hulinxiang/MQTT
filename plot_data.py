@@ -2,6 +2,10 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import re
 
+"""
+It is a python file for drawing data.
+"""
+
 
 def parse_data(text):
     data = {
