@@ -2,11 +2,2339 @@ Number of publishers: 1
 Publisher QoS: 0
 Analyzer QoS: 0
 Configuration: counter/1/0/0
-Received messages: 1714298
-Expected messages: 1714298
-Total average rate: 28571.63 messages/sec
+Received messages: 1760407
+Expected messages: 1760407
+Current number of publishers: 1
+Total average rate: 29340.12 messages/sec
 Message loss rate: 0.00%
 Out of order rate: 0.00%
 Median inter-message gap: 0.00 ms
+
+--------------------------------------------------
+Number of publishers: 1
+Publisher QoS: 0
+Analyzer QoS: 0
+Configuration: counter/1/0/1
+Received messages: 20267
+Expected messages: 20267
+Current number of publishers: 1
+Total average rate: 337.78 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 2.00 ms
+
+--------------------------------------------------
+Number of publishers: 1
+Publisher QoS: 0
+Analyzer QoS: 0
+Configuration: counter/1/0/2
+Received messages: 18310
+Expected messages: 18310
+Current number of publishers: 1
+Total average rate: 305.17 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 3.00 ms
+
+--------------------------------------------------
+Number of publishers: 1
+Publisher QoS: 0
+Analyzer QoS: 0
+Configuration: counter/1/0/4
+Received messages: 11164
+Expected messages: 11164
+Current number of publishers: 1
+Total average rate: 186.07 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 5.00 ms
+
+--------------------------------------------------
+Number of publishers: 1
+Publisher QoS: 0
+Analyzer QoS: 1
+Configuration: counter/1/0/0
+Received messages: 1762465
+Expected messages: 1762465
+Current number of publishers: 1
+Total average rate: 29374.42 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 0.00 ms
+
+--------------------------------------------------
+Number of publishers: 1
+Publisher QoS: 0
+Analyzer QoS: 1
+Configuration: counter/1/0/1
+Received messages: 33086
+Expected messages: 33086
+Current number of publishers: 1
+Total average rate: 551.43 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 2.00 ms
+
+--------------------------------------------------
+Number of publishers: 1
+Publisher QoS: 0
+Analyzer QoS: 1
+Configuration: counter/1/0/2
+Received messages: 18583
+Expected messages: 18583
+Current number of publishers: 1
+Total average rate: 309.72 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 3.00 ms
+
+--------------------------------------------------
+Number of publishers: 1
+Publisher QoS: 0
+Analyzer QoS: 1
+Configuration: counter/1/0/4
+Received messages: 11357
+Expected messages: 11357
+Current number of publishers: 1
+Total average rate: 189.28 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 5.00 ms
+
+--------------------------------------------------
+Number of publishers: 1
+Publisher QoS: 0
+Analyzer QoS: 2
+Configuration: counter/1/0/0
+Received messages: 1755470
+Expected messages: 1755470
+Current number of publishers: 1
+Total average rate: 29257.83 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 0.00 ms
+
+--------------------------------------------------
+Number of publishers: 1
+Publisher QoS: 0
+Analyzer QoS: 2
+Configuration: counter/1/0/1
+Received messages: 37177
+Expected messages: 37177
+Current number of publishers: 1
+Total average rate: 619.62 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 1.00 ms
+
+--------------------------------------------------
+Number of publishers: 1
+Publisher QoS: 0
+Analyzer QoS: 2
+Configuration: counter/1/0/2
+Received messages: 18453
+Expected messages: 18453
+Current number of publishers: 1
+Total average rate: 307.55 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 3.00 ms
+
+--------------------------------------------------
+Number of publishers: 1
+Publisher QoS: 0
+Analyzer QoS: 2
+Configuration: counter/1/0/4
+Received messages: 11385
+Expected messages: 11385
+Current number of publishers: 1
+Total average rate: 189.75 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 5.00 ms
+
+--------------------------------------------------
+Number of publishers: 1
+Publisher QoS: 1
+Analyzer QoS: 0
+Configuration: counter/1/1/0
+Received messages: 810191
+Expected messages: 810191
+Current number of publishers: 1
+Total average rate: 13503.18 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 0.00 ms
+
+--------------------------------------------------
+Number of publishers: 1
+Publisher QoS: 1
+Analyzer QoS: 0
+Configuration: counter/1/1/1
+Received messages: 35494
+Expected messages: 35494
+Current number of publishers: 1
+Total average rate: 591.57 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 1.00 ms
+
+--------------------------------------------------
+Number of publishers: 1
+Publisher QoS: 1
+Analyzer QoS: 0
+Configuration: counter/1/1/2
+Received messages: 18759
+Expected messages: 18759
+Current number of publishers: 1
+Total average rate: 312.65 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 3.00 ms
+
+--------------------------------------------------
+Number of publishers: 1
+Publisher QoS: 1
+Analyzer QoS: 0
+Configuration: counter/1/1/4
+Received messages: 11516
+Expected messages: 11516
+Current number of publishers: 1
+Total average rate: 191.93 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 5.00 ms
+
+--------------------------------------------------
+Number of publishers: 1
+Publisher QoS: 1
+Analyzer QoS: 1
+Configuration: counter/1/1/0
+Received messages: 810919
+Expected messages: 810919
+Current number of publishers: 1
+Total average rate: 13515.32 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 0.00 ms
+
+--------------------------------------------------
+Number of publishers: 1
+Publisher QoS: 1
+Analyzer QoS: 1
+Configuration: counter/1/1/1
+Received messages: 39174
+Expected messages: 39174
+Current number of publishers: 1
+Total average rate: 652.90 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 1.00 ms
+
+--------------------------------------------------
+Number of publishers: 1
+Publisher QoS: 1
+Analyzer QoS: 1
+Configuration: counter/1/1/2
+Received messages: 18258
+Expected messages: 18258
+Current number of publishers: 1
+Total average rate: 304.30 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 3.00 ms
+
+--------------------------------------------------
+Number of publishers: 1
+Publisher QoS: 1
+Analyzer QoS: 1
+Configuration: counter/1/1/4
+Received messages: 11249
+Expected messages: 11249
+Current number of publishers: 1
+Total average rate: 187.48 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 5.00 ms
+
+--------------------------------------------------
+Number of publishers: 1
+Publisher QoS: 1
+Analyzer QoS: 2
+Configuration: counter/1/1/0
+Received messages: 824139
+Expected messages: 824139
+Current number of publishers: 1
+Total average rate: 13735.65 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 0.00 ms
+
+--------------------------------------------------
+Number of publishers: 1
+Publisher QoS: 1
+Analyzer QoS: 2
+Configuration: counter/1/1/1
+Received messages: 34994
+Expected messages: 34994
+Current number of publishers: 1
+Total average rate: 583.23 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 1.00 ms
+
+--------------------------------------------------
+Number of publishers: 1
+Publisher QoS: 1
+Analyzer QoS: 2
+Configuration: counter/1/1/2
+Received messages: 18114
+Expected messages: 18114
+Current number of publishers: 1
+Total average rate: 301.90 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 3.00 ms
+
+--------------------------------------------------
+Number of publishers: 1
+Publisher QoS: 1
+Analyzer QoS: 2
+Configuration: counter/1/1/4
+Received messages: 11372
+Expected messages: 11372
+Current number of publishers: 1
+Total average rate: 189.53 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 5.00 ms
+
+--------------------------------------------------
+Number of publishers: 1
+Publisher QoS: 2
+Analyzer QoS: 0
+Configuration: counter/1/2/0
+Received messages: 523273
+Expected messages: 523273
+Current number of publishers: 1
+Total average rate: 8721.22 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 0.00 ms
+
+--------------------------------------------------
+Number of publishers: 1
+Publisher QoS: 2
+Analyzer QoS: 0
+Configuration: counter/1/2/1
+Received messages: 23133
+Expected messages: 23133
+Current number of publishers: 1
+Total average rate: 385.55 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 3.00 ms
+
+--------------------------------------------------
+Number of publishers: 1
+Publisher QoS: 2
+Analyzer QoS: 0
+Configuration: counter/1/2/2
+Received messages: 18636
+Expected messages: 18636
+Current number of publishers: 1
+Total average rate: 310.60 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 3.00 ms
+
+--------------------------------------------------
+Number of publishers: 1
+Publisher QoS: 2
+Analyzer QoS: 0
+Configuration: counter/1/2/4
+Received messages: 11294
+Expected messages: 11294
+Current number of publishers: 1
+Total average rate: 188.23 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 5.00 ms
+
+--------------------------------------------------
+Number of publishers: 1
+Publisher QoS: 2
+Analyzer QoS: 1
+Configuration: counter/1/2/0
+Received messages: 521174
+Expected messages: 521174
+Current number of publishers: 1
+Total average rate: 8686.23 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 0.00 ms
+
+--------------------------------------------------
+Number of publishers: 1
+Publisher QoS: 2
+Analyzer QoS: 1
+Configuration: counter/1/2/1
+Received messages: 28765
+Expected messages: 28765
+Current number of publishers: 1
+Total average rate: 479.42 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 2.00 ms
+
+--------------------------------------------------
+Number of publishers: 1
+Publisher QoS: 2
+Analyzer QoS: 1
+Configuration: counter/1/2/2
+Received messages: 17479
+Expected messages: 17479
+Current number of publishers: 1
+Total average rate: 291.32 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 3.00 ms
+
+--------------------------------------------------
+Number of publishers: 1
+Publisher QoS: 2
+Analyzer QoS: 1
+Configuration: counter/1/2/4
+Received messages: 10661
+Expected messages: 10661
+Current number of publishers: 1
+Total average rate: 177.68 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 5.00 ms
+
+--------------------------------------------------
+Number of publishers: 1
+Publisher QoS: 2
+Analyzer QoS: 2
+Configuration: counter/1/2/0
+Received messages: 515454
+Expected messages: 524635
+Current number of publishers: 1
+Total average rate: 8590.90 messages/sec
+Message loss rate: 1.75%
+Out of order rate: 0.00%
+Median inter-message gap: 0.00 ms
+
+--------------------------------------------------
+Number of publishers: 1
+Publisher QoS: 2
+Analyzer QoS: 2
+Configuration: counter/1/2/1
+Received messages: 32017
+Expected messages: 32017
+Current number of publishers: 1
+Total average rate: 533.62 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 2.00 ms
+
+--------------------------------------------------
+Number of publishers: 1
+Publisher QoS: 2
+Analyzer QoS: 2
+Configuration: counter/1/2/2
+Received messages: 17962
+Expected messages: 17962
+Current number of publishers: 1
+Total average rate: 299.37 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 3.00 ms
+
+--------------------------------------------------
+Number of publishers: 1
+Publisher QoS: 2
+Analyzer QoS: 2
+Configuration: counter/1/2/4
+Received messages: 11059
+Expected messages: 11059
+Current number of publishers: 1
+Total average rate: 184.32 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 5.00 ms
+
+--------------------------------------------------
+Number of publishers: 2
+Publisher QoS: 0
+Analyzer QoS: 0
+Configuration: counter/1/0/0
+Received messages: 1779575
+Expected messages: 1779575
+Current number of publishers: 2
+Total average rate: 29659.58 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 0.00 ms
+
+--------------------------------------------------
+Number of publishers: 2
+Publisher QoS: 0
+Analyzer QoS: 0
+Configuration: counter/2/0/1
+Received messages: 30485
+Expected messages: 30485
+Current number of publishers: 2
+Total average rate: 508.08 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 2.00 ms
+
+--------------------------------------------------
+Number of publishers: 2
+Publisher QoS: 0
+Analyzer QoS: 0
+Configuration: counter/1/0/2
+Received messages: 18985
+Expected messages: 18985
+Current number of publishers: 2
+Total average rate: 316.42 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 3.00 ms
+
+--------------------------------------------------
+Number of publishers: 2
+Publisher QoS: 0
+Analyzer QoS: 0
+Configuration: counter/2/0/4
+Received messages: 11572
+Expected messages: 11572
+Current number of publishers: 2
+Total average rate: 192.87 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 5.00 ms
+
+--------------------------------------------------
+Number of publishers: 2
+Publisher QoS: 0
+Analyzer QoS: 1
+Configuration: counter/1/0/0
+Received messages: 1776583
+Expected messages: 1776583
+Current number of publishers: 2
+Total average rate: 29609.72 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 0.00 ms
+
+--------------------------------------------------
+Number of publishers: 2
+Publisher QoS: 0
+Analyzer QoS: 1
+Configuration: counter/2/0/1
+Received messages: 33850
+Expected messages: 33850
+Current number of publishers: 2
+Total average rate: 564.17 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 2.00 ms
+
+--------------------------------------------------
+Number of publishers: 2
+Publisher QoS: 0
+Analyzer QoS: 1
+Configuration: counter/1/0/2
+Received messages: 19213
+Expected messages: 19213
+Current number of publishers: 2
+Total average rate: 320.22 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 3.00 ms
+
+--------------------------------------------------
+Number of publishers: 2
+Publisher QoS: 0
+Analyzer QoS: 1
+Configuration: counter/2/0/4
+Received messages: 11607
+Expected messages: 11607
+Current number of publishers: 2
+Total average rate: 193.45 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 5.00 ms
+
+--------------------------------------------------
+Number of publishers: 2
+Publisher QoS: 0
+Analyzer QoS: 2
+Configuration: counter/1/0/0
+Received messages: 1799612
+Expected messages: 1799612
+Current number of publishers: 2
+Total average rate: 29993.53 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 0.00 ms
+
+--------------------------------------------------
+Number of publishers: 2
+Publisher QoS: 0
+Analyzer QoS: 2
+Configuration: counter/2/0/1
+Received messages: 29025
+Expected messages: 29025
+Current number of publishers: 2
+Total average rate: 483.75 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 2.00 ms
+
+--------------------------------------------------
+Number of publishers: 2
+Publisher QoS: 0
+Analyzer QoS: 2
+Configuration: counter/1/0/2
+Received messages: 18501
+Expected messages: 18501
+Current number of publishers: 2
+Total average rate: 308.35 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 3.00 ms
+
+--------------------------------------------------
+Number of publishers: 2
+Publisher QoS: 0
+Analyzer QoS: 2
+Configuration: counter/2/0/4
+Received messages: 11555
+Expected messages: 11555
+Current number of publishers: 2
+Total average rate: 192.58 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 5.00 ms
+
+--------------------------------------------------
+Number of publishers: 2
+Publisher QoS: 1
+Analyzer QoS: 0
+Configuration: counter/1/1/0
+Received messages: 822378
+Expected messages: 822378
+Current number of publishers: 2
+Total average rate: 13706.30 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 0.00 ms
+
+--------------------------------------------------
+Number of publishers: 2
+Publisher QoS: 1
+Analyzer QoS: 0
+Configuration: counter/2/1/1
+Received messages: 27310
+Expected messages: 27310
+Current number of publishers: 2
+Total average rate: 455.17 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 2.00 ms
+
+--------------------------------------------------
+Number of publishers: 2
+Publisher QoS: 1
+Analyzer QoS: 0
+Configuration: counter/1/1/2
+Received messages: 18800
+Expected messages: 18800
+Current number of publishers: 2
+Total average rate: 313.33 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 3.00 ms
+
+--------------------------------------------------
+Number of publishers: 2
+Publisher QoS: 1
+Analyzer QoS: 0
+Configuration: counter/2/1/4
+Received messages: 11381
+Expected messages: 11381
+Current number of publishers: 2
+Total average rate: 189.68 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 5.00 ms
+
+--------------------------------------------------
+Number of publishers: 2
+Publisher QoS: 1
+Analyzer QoS: 1
+Configuration: counter/1/1/0
+Received messages: 817537
+Expected messages: 817537
+Current number of publishers: 2
+Total average rate: 13625.62 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 0.00 ms
+
+--------------------------------------------------
+Number of publishers: 2
+Publisher QoS: 1
+Analyzer QoS: 1
+Configuration: counter/2/1/1
+Received messages: 26471
+Expected messages: 26471
+Current number of publishers: 2
+Total average rate: 441.18 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 2.00 ms
+
+--------------------------------------------------
+Number of publishers: 2
+Publisher QoS: 1
+Analyzer QoS: 1
+Configuration: counter/1/1/2
+Received messages: 18212
+Expected messages: 18212
+Current number of publishers: 2
+Total average rate: 303.53 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 3.00 ms
+
+--------------------------------------------------
+Number of publishers: 2
+Publisher QoS: 1
+Analyzer QoS: 1
+Configuration: counter/2/1/4
+Received messages: 11473
+Expected messages: 11473
+Current number of publishers: 2
+Total average rate: 191.22 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 5.00 ms
+
+--------------------------------------------------
+Number of publishers: 2
+Publisher QoS: 1
+Analyzer QoS: 2
+Configuration: counter/1/1/0
+Received messages: 816718
+Expected messages: 816718
+Current number of publishers: 2
+Total average rate: 13611.97 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 0.00 ms
+
+--------------------------------------------------
+Number of publishers: 2
+Publisher QoS: 1
+Analyzer QoS: 2
+Configuration: counter/2/1/1
+Received messages: 27581
+Expected messages: 27581
+Current number of publishers: 2
+Total average rate: 459.68 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 2.00 ms
+
+--------------------------------------------------
+Number of publishers: 2
+Publisher QoS: 1
+Analyzer QoS: 2
+Configuration: counter/1/1/2
+Received messages: 18524
+Expected messages: 18524
+Current number of publishers: 2
+Total average rate: 308.73 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 3.00 ms
+
+--------------------------------------------------
+Number of publishers: 2
+Publisher QoS: 1
+Analyzer QoS: 2
+Configuration: counter/2/1/4
+Received messages: 11466
+Expected messages: 11466
+Current number of publishers: 2
+Total average rate: 191.10 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 5.00 ms
+
+--------------------------------------------------
+Number of publishers: 2
+Publisher QoS: 2
+Analyzer QoS: 0
+Configuration: counter/1/2/0
+Received messages: 514764
+Expected messages: 514764
+Current number of publishers: 2
+Total average rate: 8579.40 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 0.00 ms
+
+--------------------------------------------------
+Number of publishers: 2
+Publisher QoS: 2
+Analyzer QoS: 0
+Configuration: counter/2/2/1
+Received messages: 28822
+Expected messages: 28822
+Current number of publishers: 2
+Total average rate: 480.37 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 2.00 ms
+
+--------------------------------------------------
+Number of publishers: 2
+Publisher QoS: 2
+Analyzer QoS: 0
+Configuration: counter/1/2/2
+Received messages: 18343
+Expected messages: 18343
+Current number of publishers: 2
+Total average rate: 305.72 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 3.00 ms
+
+--------------------------------------------------
+Number of publishers: 2
+Publisher QoS: 2
+Analyzer QoS: 0
+Configuration: counter/2/2/4
+Received messages: 11261
+Expected messages: 11261
+Current number of publishers: 2
+Total average rate: 187.68 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 5.00 ms
+
+--------------------------------------------------
+Number of publishers: 2
+Publisher QoS: 2
+Analyzer QoS: 1
+Configuration: counter/1/2/0
+Received messages: 521037
+Expected messages: 521037
+Current number of publishers: 2
+Total average rate: 8683.95 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 0.00 ms
+
+--------------------------------------------------
+Number of publishers: 2
+Publisher QoS: 2
+Analyzer QoS: 1
+Configuration: counter/2/2/1
+Received messages: 30412
+Expected messages: 30412
+Current number of publishers: 2
+Total average rate: 506.87 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 2.00 ms
+
+--------------------------------------------------
+Number of publishers: 2
+Publisher QoS: 2
+Analyzer QoS: 1
+Configuration: counter/1/2/2
+Received messages: 18244
+Expected messages: 18244
+Current number of publishers: 2
+Total average rate: 304.07 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 3.00 ms
+
+--------------------------------------------------
+Number of publishers: 2
+Publisher QoS: 2
+Analyzer QoS: 1
+Configuration: counter/2/2/4
+Received messages: 11279
+Expected messages: 11279
+Current number of publishers: 2
+Total average rate: 187.98 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 5.00 ms
+
+--------------------------------------------------
+Number of publishers: 2
+Publisher QoS: 2
+Analyzer QoS: 2
+Configuration: counter/1/2/0
+Received messages: 506404
+Expected messages: 525378
+Current number of publishers: 2
+Total average rate: 8440.07 messages/sec
+Message loss rate: 3.61%
+Out of order rate: 0.00%
+Median inter-message gap: 0.00 ms
+
+--------------------------------------------------
+Number of publishers: 2
+Publisher QoS: 2
+Analyzer QoS: 2
+Configuration: counter/2/2/1
+Received messages: 25023
+Expected messages: 25023
+Current number of publishers: 2
+Total average rate: 417.05 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 2.00 ms
+
+--------------------------------------------------
+Number of publishers: 2
+Publisher QoS: 2
+Analyzer QoS: 2
+Configuration: counter/1/2/2
+Received messages: 18047
+Expected messages: 18047
+Current number of publishers: 2
+Total average rate: 300.78 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 3.00 ms
+
+--------------------------------------------------
+Number of publishers: 2
+Publisher QoS: 2
+Analyzer QoS: 2
+Configuration: counter/2/2/4
+Received messages: 11303
+Expected messages: 11303
+Current number of publishers: 2
+Total average rate: 188.38 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 5.00 ms
+
+--------------------------------------------------
+Number of publishers: 3
+Publisher QoS: 0
+Analyzer QoS: 0
+Configuration: counter/1/0/0
+Received messages: 1778971
+Expected messages: 1778971
+Current number of publishers: 3
+Total average rate: 29649.52 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 0.00 ms
+
+--------------------------------------------------
+Number of publishers: 3
+Publisher QoS: 0
+Analyzer QoS: 0
+Configuration: counter/2/0/1
+Received messages: 30519
+Expected messages: 30519
+Current number of publishers: 3
+Total average rate: 508.65 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 2.00 ms
+
+--------------------------------------------------
+Number of publishers: 3
+Publisher QoS: 0
+Analyzer QoS: 0
+Configuration: counter/1/0/2
+Received messages: 18924
+Expected messages: 18924
+Current number of publishers: 3
+Total average rate: 315.40 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 3.00 ms
+
+--------------------------------------------------
+Number of publishers: 3
+Publisher QoS: 0
+Analyzer QoS: 0
+Configuration: counter/2/0/4
+Received messages: 11571
+Expected messages: 11571
+Current number of publishers: 3
+Total average rate: 192.85 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 5.00 ms
+
+--------------------------------------------------
+Number of publishers: 3
+Publisher QoS: 0
+Analyzer QoS: 1
+Configuration: counter/1/0/0
+Received messages: 1787820
+Expected messages: 1787820
+Current number of publishers: 3
+Total average rate: 29797.00 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 0.00 ms
+
+--------------------------------------------------
+Number of publishers: 3
+Publisher QoS: 0
+Analyzer QoS: 1
+Configuration: counter/2/0/1
+Received messages: 32441
+Expected messages: 32441
+Current number of publishers: 3
+Total average rate: 540.68 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 2.00 ms
+
+--------------------------------------------------
+Number of publishers: 3
+Publisher QoS: 0
+Analyzer QoS: 1
+Configuration: counter/1/0/2
+Received messages: 18265
+Expected messages: 18265
+Current number of publishers: 3
+Total average rate: 304.42 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 3.00 ms
+
+--------------------------------------------------
+Number of publishers: 3
+Publisher QoS: 0
+Analyzer QoS: 1
+Configuration: counter/2/0/4
+Received messages: 11604
+Expected messages: 11604
+Current number of publishers: 3
+Total average rate: 193.40 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 5.00 ms
+
+--------------------------------------------------
+Number of publishers: 3
+Publisher QoS: 0
+Analyzer QoS: 2
+Configuration: counter/1/0/0
+Received messages: 1795000
+Expected messages: 1795000
+Current number of publishers: 3
+Total average rate: 29916.67 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 0.00 ms
+
+--------------------------------------------------
+Number of publishers: 3
+Publisher QoS: 0
+Analyzer QoS: 2
+Configuration: counter/2/0/1
+Received messages: 30718
+Expected messages: 30718
+Current number of publishers: 3
+Total average rate: 511.97 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 2.00 ms
+
+--------------------------------------------------
+Number of publishers: 3
+Publisher QoS: 0
+Analyzer QoS: 2
+Configuration: counter/1/0/2
+Received messages: 18450
+Expected messages: 18450
+Current number of publishers: 3
+Total average rate: 307.50 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 3.00 ms
+
+--------------------------------------------------
+Number of publishers: 3
+Publisher QoS: 0
+Analyzer QoS: 2
+Configuration: counter/2/0/4
+Received messages: 11608
+Expected messages: 11608
+Current number of publishers: 3
+Total average rate: 193.47 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 5.00 ms
+
+--------------------------------------------------
+Number of publishers: 3
+Publisher QoS: 1
+Analyzer QoS: 0
+Configuration: counter/1/1/0
+Received messages: 823494
+Expected messages: 823494
+Current number of publishers: 3
+Total average rate: 13724.90 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 0.00 ms
+
+--------------------------------------------------
+Number of publishers: 3
+Publisher QoS: 1
+Analyzer QoS: 0
+Configuration: counter/2/1/1
+Received messages: 30608
+Expected messages: 30608
+Current number of publishers: 3
+Total average rate: 510.13 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 2.00 ms
+
+--------------------------------------------------
+Number of publishers: 3
+Publisher QoS: 1
+Analyzer QoS: 0
+Configuration: counter/1/1/2
+Received messages: 18682
+Expected messages: 18682
+Current number of publishers: 3
+Total average rate: 311.37 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 3.00 ms
+
+--------------------------------------------------
+Number of publishers: 3
+Publisher QoS: 1
+Analyzer QoS: 0
+Configuration: counter/2/1/4
+Received messages: 11470
+Expected messages: 11470
+Current number of publishers: 3
+Total average rate: 191.17 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 5.00 ms
+
+--------------------------------------------------
+Number of publishers: 3
+Publisher QoS: 1
+Analyzer QoS: 1
+Configuration: counter/1/1/0
+Received messages: 818073
+Expected messages: 818073
+Current number of publishers: 3
+Total average rate: 13634.55 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 0.00 ms
+
+--------------------------------------------------
+Number of publishers: 3
+Publisher QoS: 1
+Analyzer QoS: 1
+Configuration: counter/2/1/1
+Received messages: 27823
+Expected messages: 27823
+Current number of publishers: 3
+Total average rate: 463.72 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 2.00 ms
+
+--------------------------------------------------
+Number of publishers: 3
+Publisher QoS: 1
+Analyzer QoS: 1
+Configuration: counter/1/1/2
+Received messages: 18631
+Expected messages: 18631
+Current number of publishers: 3
+Total average rate: 310.52 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 3.00 ms
+
+--------------------------------------------------
+Number of publishers: 3
+Publisher QoS: 1
+Analyzer QoS: 1
+Configuration: counter/2/1/4
+Received messages: 11374
+Expected messages: 11374
+Current number of publishers: 3
+Total average rate: 189.57 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 5.00 ms
+
+--------------------------------------------------
+Number of publishers: 3
+Publisher QoS: 1
+Analyzer QoS: 2
+Configuration: counter/1/1/0
+Received messages: 807923
+Expected messages: 807923
+Current number of publishers: 3
+Total average rate: 13465.38 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 0.00 ms
+
+--------------------------------------------------
+Number of publishers: 3
+Publisher QoS: 1
+Analyzer QoS: 2
+Configuration: counter/2/1/1
+Received messages: 34664
+Expected messages: 34664
+Current number of publishers: 3
+Total average rate: 577.73 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 1.00 ms
+
+--------------------------------------------------
+Number of publishers: 3
+Publisher QoS: 1
+Analyzer QoS: 2
+Configuration: counter/1/1/2
+Received messages: 19542
+Expected messages: 19542
+Current number of publishers: 3
+Total average rate: 325.70 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 3.00 ms
+
+--------------------------------------------------
+Number of publishers: 3
+Publisher QoS: 1
+Analyzer QoS: 2
+Configuration: counter/2/1/4
+Received messages: 11438
+Expected messages: 11438
+Current number of publishers: 3
+Total average rate: 190.63 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 5.00 ms
+
+--------------------------------------------------
+Number of publishers: 3
+Publisher QoS: 2
+Analyzer QoS: 0
+Configuration: counter/1/2/0
+Received messages: 518485
+Expected messages: 518485
+Current number of publishers: 3
+Total average rate: 8641.42 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 0.00 ms
+
+--------------------------------------------------
+Number of publishers: 3
+Publisher QoS: 2
+Analyzer QoS: 0
+Configuration: counter/2/2/1
+Received messages: 26936
+Expected messages: 26936
+Current number of publishers: 3
+Total average rate: 448.93 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 2.00 ms
+
+--------------------------------------------------
+Number of publishers: 3
+Publisher QoS: 2
+Analyzer QoS: 0
+Configuration: counter/1/2/2
+Received messages: 18312
+Expected messages: 18312
+Current number of publishers: 3
+Total average rate: 305.20 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 3.00 ms
+
+--------------------------------------------------
+Number of publishers: 3
+Publisher QoS: 2
+Analyzer QoS: 0
+Configuration: counter/2/2/4
+Received messages: 11457
+Expected messages: 11457
+Current number of publishers: 3
+Total average rate: 190.95 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 5.00 ms
+
+--------------------------------------------------
+Number of publishers: 3
+Publisher QoS: 2
+Analyzer QoS: 1
+Configuration: counter/1/2/0
+Received messages: 518393
+Expected messages: 518393
+Current number of publishers: 3
+Total average rate: 8639.88 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 0.00 ms
+
+--------------------------------------------------
+Number of publishers: 3
+Publisher QoS: 2
+Analyzer QoS: 1
+Configuration: counter/2/2/1
+Received messages: 25828
+Expected messages: 25828
+Current number of publishers: 3
+Total average rate: 430.47 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 2.00 ms
+
+--------------------------------------------------
+Number of publishers: 3
+Publisher QoS: 2
+Analyzer QoS: 1
+Configuration: counter/1/2/2
+Received messages: 18151
+Expected messages: 18151
+Current number of publishers: 3
+Total average rate: 302.52 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 3.00 ms
+
+--------------------------------------------------
+Number of publishers: 3
+Publisher QoS: 2
+Analyzer QoS: 1
+Configuration: counter/2/2/4
+Received messages: 11244
+Expected messages: 11244
+Current number of publishers: 3
+Total average rate: 187.40 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 5.00 ms
+
+--------------------------------------------------
+Number of publishers: 3
+Publisher QoS: 2
+Analyzer QoS: 2
+Configuration: counter/1/2/0
+Received messages: 500708
+Expected messages: 546448
+Current number of publishers: 3
+Total average rate: 8345.13 messages/sec
+Message loss rate: 8.37%
+Out of order rate: 0.00%
+Median inter-message gap: 0.00 ms
+
+--------------------------------------------------
+Number of publishers: 3
+Publisher QoS: 2
+Analyzer QoS: 2
+Configuration: counter/2/2/1
+Received messages: 25570
+Expected messages: 25570
+Current number of publishers: 3
+Total average rate: 426.17 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 2.00 ms
+
+--------------------------------------------------
+Number of publishers: 3
+Publisher QoS: 2
+Analyzer QoS: 2
+Configuration: counter/1/2/2
+Received messages: 18401
+Expected messages: 18401
+Current number of publishers: 3
+Total average rate: 306.68 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 3.00 ms
+
+--------------------------------------------------
+Number of publishers: 3
+Publisher QoS: 2
+Analyzer QoS: 2
+Configuration: counter/2/2/4
+Received messages: 11163
+Expected messages: 11163
+Current number of publishers: 3
+Total average rate: 186.05 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 5.00 ms
+
+--------------------------------------------------
+Number of publishers: 4
+Publisher QoS: 0
+Analyzer QoS: 0
+Configuration: counter/1/0/0
+Received messages: 1769361
+Expected messages: 1769361
+Current number of publishers: 4
+Total average rate: 29489.35 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 0.00 ms
+
+--------------------------------------------------
+Number of publishers: 4
+Publisher QoS: 0
+Analyzer QoS: 0
+Configuration: counter/2/0/1
+Received messages: 30422
+Expected messages: 30422
+Current number of publishers: 4
+Total average rate: 507.03 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 2.00 ms
+
+--------------------------------------------------
+Number of publishers: 4
+Publisher QoS: 0
+Analyzer QoS: 0
+Configuration: counter/1/0/2
+Received messages: 19043
+Expected messages: 19043
+Current number of publishers: 4
+Total average rate: 317.38 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 3.00 ms
+
+--------------------------------------------------
+Number of publishers: 4
+Publisher QoS: 0
+Analyzer QoS: 0
+Configuration: counter/2/0/4
+Received messages: 11580
+Expected messages: 11580
+Current number of publishers: 4
+Total average rate: 193.00 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 5.00 ms
+
+--------------------------------------------------
+Number of publishers: 4
+Publisher QoS: 0
+Analyzer QoS: 1
+Configuration: counter/1/0/0
+Received messages: 1781906
+Expected messages: 1781906
+Current number of publishers: 4
+Total average rate: 29698.43 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 0.00 ms
+
+--------------------------------------------------
+Number of publishers: 4
+Publisher QoS: 0
+Analyzer QoS: 1
+Configuration: counter/2/0/1
+Received messages: 33577
+Expected messages: 33577
+Current number of publishers: 4
+Total average rate: 559.62 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 2.00 ms
+
+--------------------------------------------------
+Number of publishers: 4
+Publisher QoS: 0
+Analyzer QoS: 1
+Configuration: counter/1/0/2
+Received messages: 19090
+Expected messages: 19090
+Current number of publishers: 4
+Total average rate: 318.17 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 3.00 ms
+
+--------------------------------------------------
+Number of publishers: 4
+Publisher QoS: 0
+Analyzer QoS: 1
+Configuration: counter/2/0/4
+Received messages: 11623
+Expected messages: 11623
+Current number of publishers: 4
+Total average rate: 193.72 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 5.00 ms
+
+--------------------------------------------------
+Number of publishers: 4
+Publisher QoS: 0
+Analyzer QoS: 2
+Configuration: counter/1/0/0
+Received messages: 1794311
+Expected messages: 1794311
+Current number of publishers: 4
+Total average rate: 29905.18 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 0.00 ms
+
+--------------------------------------------------
+Number of publishers: 4
+Publisher QoS: 0
+Analyzer QoS: 2
+Configuration: counter/2/0/1
+Received messages: 29462
+Expected messages: 29462
+Current number of publishers: 4
+Total average rate: 491.03 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 2.00 ms
+
+--------------------------------------------------
+Number of publishers: 4
+Publisher QoS: 0
+Analyzer QoS: 2
+Configuration: counter/1/0/2
+Received messages: 18652
+Expected messages: 18652
+Current number of publishers: 4
+Total average rate: 310.87 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 3.00 ms
+
+--------------------------------------------------
+Number of publishers: 4
+Publisher QoS: 0
+Analyzer QoS: 2
+Configuration: counter/2/0/4
+Received messages: 11541
+Expected messages: 11541
+Current number of publishers: 4
+Total average rate: 192.35 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 5.00 ms
+
+--------------------------------------------------
+Number of publishers: 4
+Publisher QoS: 1
+Analyzer QoS: 0
+Configuration: counter/1/1/0
+Received messages: 827916
+Expected messages: 827916
+Current number of publishers: 4
+Total average rate: 13798.60 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 0.00 ms
+
+--------------------------------------------------
+Number of publishers: 4
+Publisher QoS: 1
+Analyzer QoS: 0
+Configuration: counter/2/1/1
+Received messages: 29248
+Expected messages: 29248
+Current number of publishers: 4
+Total average rate: 487.47 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 2.00 ms
+
+--------------------------------------------------
+Number of publishers: 4
+Publisher QoS: 1
+Analyzer QoS: 0
+Configuration: counter/1/1/2
+Received messages: 18270
+Expected messages: 18270
+Current number of publishers: 4
+Total average rate: 304.50 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 3.00 ms
+
+--------------------------------------------------
+Number of publishers: 4
+Publisher QoS: 1
+Analyzer QoS: 0
+Configuration: counter/2/1/4
+Received messages: 11488
+Expected messages: 11488
+Current number of publishers: 4
+Total average rate: 191.47 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 5.00 ms
+
+--------------------------------------------------
+Number of publishers: 4
+Publisher QoS: 1
+Analyzer QoS: 1
+Configuration: counter/1/1/0
+Received messages: 815227
+Expected messages: 815227
+Current number of publishers: 4
+Total average rate: 13587.12 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 0.00 ms
+
+--------------------------------------------------
+Number of publishers: 4
+Publisher QoS: 1
+Analyzer QoS: 1
+Configuration: counter/2/1/1
+Received messages: 25866
+Expected messages: 25866
+Current number of publishers: 4
+Total average rate: 431.10 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 2.00 ms
+
+--------------------------------------------------
+Number of publishers: 4
+Publisher QoS: 1
+Analyzer QoS: 1
+Configuration: counter/1/1/2
+Received messages: 18342
+Expected messages: 18342
+Current number of publishers: 4
+Total average rate: 305.70 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 3.00 ms
+
+--------------------------------------------------
+Number of publishers: 4
+Publisher QoS: 1
+Analyzer QoS: 1
+Configuration: counter/2/1/4
+Received messages: 11492
+Expected messages: 11492
+Current number of publishers: 4
+Total average rate: 191.53 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 5.00 ms
+
+--------------------------------------------------
+Number of publishers: 4
+Publisher QoS: 1
+Analyzer QoS: 2
+Configuration: counter/1/1/0
+Received messages: 808812
+Expected messages: 808812
+Current number of publishers: 4
+Total average rate: 13480.20 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 0.00 ms
+
+--------------------------------------------------
+Number of publishers: 4
+Publisher QoS: 1
+Analyzer QoS: 2
+Configuration: counter/2/1/1
+Received messages: 30455
+Expected messages: 30455
+Current number of publishers: 4
+Total average rate: 507.58 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 2.00 ms
+
+--------------------------------------------------
+Number of publishers: 4
+Publisher QoS: 1
+Analyzer QoS: 2
+Configuration: counter/1/1/2
+Received messages: 19028
+Expected messages: 19028
+Current number of publishers: 4
+Total average rate: 317.13 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 3.00 ms
+
+--------------------------------------------------
+Number of publishers: 4
+Publisher QoS: 1
+Analyzer QoS: 2
+Configuration: counter/2/1/4
+Received messages: 11458
+Expected messages: 11458
+Current number of publishers: 4
+Total average rate: 190.97 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 5.00 ms
+
+--------------------------------------------------
+Number of publishers: 4
+Publisher QoS: 2
+Analyzer QoS: 0
+Configuration: counter/1/2/0
+Received messages: 516105
+Expected messages: 516105
+Current number of publishers: 4
+Total average rate: 8601.75 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 0.00 ms
+
+--------------------------------------------------
+Number of publishers: 4
+Publisher QoS: 2
+Analyzer QoS: 0
+Configuration: counter/2/2/1
+Received messages: 26110
+Expected messages: 26110
+Current number of publishers: 4
+Total average rate: 435.17 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 2.00 ms
+
+--------------------------------------------------
+Number of publishers: 4
+Publisher QoS: 2
+Analyzer QoS: 0
+Configuration: counter/1/2/2
+Received messages: 18756
+Expected messages: 18756
+Current number of publishers: 4
+Total average rate: 312.60 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 3.00 ms
+
+--------------------------------------------------
+Number of publishers: 4
+Publisher QoS: 2
+Analyzer QoS: 0
+Configuration: counter/2/2/4
+Received messages: 11102
+Expected messages: 11102
+Current number of publishers: 4
+Total average rate: 185.03 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 5.00 ms
+
+--------------------------------------------------
+Number of publishers: 4
+Publisher QoS: 2
+Analyzer QoS: 1
+Configuration: counter/1/2/0
+Received messages: 518000
+Expected messages: 518000
+Current number of publishers: 4
+Total average rate: 8633.33 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 0.00 ms
+
+--------------------------------------------------
+Number of publishers: 4
+Publisher QoS: 2
+Analyzer QoS: 1
+Configuration: counter/2/2/1
+Received messages: 25206
+Expected messages: 25206
+Current number of publishers: 4
+Total average rate: 420.10 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 2.00 ms
+
+--------------------------------------------------
+Number of publishers: 4
+Publisher QoS: 2
+Analyzer QoS: 1
+Configuration: counter/1/2/2
+Received messages: 18905
+Expected messages: 18905
+Current number of publishers: 4
+Total average rate: 315.08 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 3.00 ms
+
+--------------------------------------------------
+Number of publishers: 4
+Publisher QoS: 2
+Analyzer QoS: 1
+Configuration: counter/2/2/4
+Received messages: 10907
+Expected messages: 10907
+Current number of publishers: 4
+Total average rate: 181.78 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 5.00 ms
+
+--------------------------------------------------
+Number of publishers: 4
+Publisher QoS: 2
+Analyzer QoS: 2
+Configuration: counter/1/2/0
+Received messages: 475660
+Expected messages: 542441
+Current number of publishers: 4
+Total average rate: 7927.67 messages/sec
+Message loss rate: 12.31%
+Out of order rate: 0.00%
+Median inter-message gap: 0.00 ms
+
+--------------------------------------------------
+Number of publishers: 4
+Publisher QoS: 2
+Analyzer QoS: 2
+Configuration: counter/2/2/1
+Received messages: 25124
+Expected messages: 25124
+Current number of publishers: 4
+Total average rate: 418.73 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 2.00 ms
+
+--------------------------------------------------
+Number of publishers: 4
+Publisher QoS: 2
+Analyzer QoS: 2
+Configuration: counter/1/2/2
+Received messages: 18300
+Expected messages: 18300
+Current number of publishers: 4
+Total average rate: 305.00 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 3.00 ms
+
+--------------------------------------------------
+Number of publishers: 4
+Publisher QoS: 2
+Analyzer QoS: 2
+Configuration: counter/2/2/4
+Received messages: 11461
+Expected messages: 11461
+Current number of publishers: 4
+Total average rate: 191.02 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 5.00 ms
+
+--------------------------------------------------
+Number of publishers: 5
+Publisher QoS: 0
+Analyzer QoS: 0
+Configuration: counter/1/0/0
+Received messages: 1767383
+Expected messages: 1767383
+Current number of publishers: 5
+Total average rate: 29456.38 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 0.00 ms
+
+--------------------------------------------------
+Number of publishers: 5
+Publisher QoS: 0
+Analyzer QoS: 0
+Configuration: counter/2/0/1
+Received messages: 32839
+Expected messages: 32839
+Current number of publishers: 5
+Total average rate: 547.32 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 2.00 ms
+
+--------------------------------------------------
+Number of publishers: 5
+Publisher QoS: 0
+Analyzer QoS: 0
+Configuration: counter/1/0/2
+Received messages: 19411
+Expected messages: 19411
+Current number of publishers: 5
+Total average rate: 323.52 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 3.00 ms
+
+--------------------------------------------------
+Number of publishers: 5
+Publisher QoS: 0
+Analyzer QoS: 0
+Configuration: counter/2/0/4
+Received messages: 11585
+Expected messages: 11585
+Current number of publishers: 5
+Total average rate: 193.08 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 5.00 ms
+
+--------------------------------------------------
+Number of publishers: 5
+Publisher QoS: 0
+Analyzer QoS: 1
+Configuration: counter/1/0/0
+Received messages: 1792842
+Expected messages: 1792842
+Current number of publishers: 5
+Total average rate: 29880.70 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 0.00 ms
+
+--------------------------------------------------
+Number of publishers: 5
+Publisher QoS: 0
+Analyzer QoS: 1
+Configuration: counter/2/0/1
+Received messages: 28580
+Expected messages: 28580
+Current number of publishers: 5
+Total average rate: 476.33 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 2.00 ms
+
+--------------------------------------------------
+Number of publishers: 5
+Publisher QoS: 0
+Analyzer QoS: 1
+Configuration: counter/1/0/2
+Received messages: 18728
+Expected messages: 18728
+Current number of publishers: 5
+Total average rate: 312.13 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 3.00 ms
+
+--------------------------------------------------
+Number of publishers: 5
+Publisher QoS: 0
+Analyzer QoS: 1
+Configuration: counter/2/0/4
+Received messages: 11532
+Expected messages: 11532
+Current number of publishers: 5
+Total average rate: 192.20 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 5.00 ms
+
+--------------------------------------------------
+Number of publishers: 5
+Publisher QoS: 0
+Analyzer QoS: 2
+Configuration: counter/1/0/0
+Received messages: 1799145
+Expected messages: 1799145
+Current number of publishers: 5
+Total average rate: 29985.75 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 0.00 ms
+
+--------------------------------------------------
+Number of publishers: 5
+Publisher QoS: 0
+Analyzer QoS: 2
+Configuration: counter/2/0/1
+Received messages: 29998
+Expected messages: 29998
+Current number of publishers: 5
+Total average rate: 499.97 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 2.00 ms
+
+--------------------------------------------------
+Number of publishers: 5
+Publisher QoS: 0
+Analyzer QoS: 2
+Configuration: counter/1/0/2
+Received messages: 18856
+Expected messages: 18856
+Current number of publishers: 5
+Total average rate: 314.27 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 3.00 ms
+
+--------------------------------------------------
+Number of publishers: 5
+Publisher QoS: 0
+Analyzer QoS: 2
+Configuration: counter/2/0/4
+Received messages: 11390
+Expected messages: 11390
+Current number of publishers: 5
+Total average rate: 189.83 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 5.00 ms
+
+--------------------------------------------------
+Number of publishers: 5
+Publisher QoS: 1
+Analyzer QoS: 0
+Configuration: counter/1/1/0
+Received messages: 819167
+Expected messages: 819167
+Current number of publishers: 5
+Total average rate: 13652.78 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 0.00 ms
+
+--------------------------------------------------
+Number of publishers: 5
+Publisher QoS: 1
+Analyzer QoS: 0
+Configuration: counter/2/1/1
+Received messages: 29838
+Expected messages: 29838
+Current number of publishers: 5
+Total average rate: 497.30 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 2.00 ms
+
+--------------------------------------------------
+Number of publishers: 5
+Publisher QoS: 1
+Analyzer QoS: 0
+Configuration: counter/1/1/2
+Received messages: 18512
+Expected messages: 18512
+Current number of publishers: 5
+Total average rate: 308.53 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 3.00 ms
+
+--------------------------------------------------
+Number of publishers: 5
+Publisher QoS: 1
+Analyzer QoS: 0
+Configuration: counter/2/1/4
+Received messages: 11466
+Expected messages: 11466
+Current number of publishers: 5
+Total average rate: 191.10 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 5.00 ms
+
+--------------------------------------------------
+Number of publishers: 5
+Publisher QoS: 1
+Analyzer QoS: 1
+Configuration: counter/1/1/0
+Received messages: 808586
+Expected messages: 808586
+Current number of publishers: 5
+Total average rate: 13476.43 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 0.00 ms
+
+--------------------------------------------------
+Number of publishers: 5
+Publisher QoS: 1
+Analyzer QoS: 1
+Configuration: counter/2/1/1
+Received messages: 31169
+Expected messages: 31169
+Current number of publishers: 5
+Total average rate: 519.48 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 2.00 ms
+
+--------------------------------------------------
+Number of publishers: 5
+Publisher QoS: 1
+Analyzer QoS: 1
+Configuration: counter/1/1/2
+Received messages: 18983
+Expected messages: 18983
+Current number of publishers: 5
+Total average rate: 316.38 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 3.00 ms
+
+--------------------------------------------------
+Number of publishers: 5
+Publisher QoS: 1
+Analyzer QoS: 1
+Configuration: counter/2/1/4
+Received messages: 11477
+Expected messages: 11477
+Current number of publishers: 5
+Total average rate: 191.28 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 5.00 ms
+
+--------------------------------------------------
+Number of publishers: 5
+Publisher QoS: 1
+Analyzer QoS: 2
+Configuration: counter/1/1/0
+Received messages: 806958
+Expected messages: 806958
+Current number of publishers: 5
+Total average rate: 13449.30 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 0.00 ms
+
+--------------------------------------------------
+Number of publishers: 5
+Publisher QoS: 1
+Analyzer QoS: 2
+Configuration: counter/2/1/1
+Received messages: 27415
+Expected messages: 27415
+Current number of publishers: 5
+Total average rate: 456.92 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 2.00 ms
+
+--------------------------------------------------
+Number of publishers: 5
+Publisher QoS: 1
+Analyzer QoS: 2
+Configuration: counter/1/1/2
+Received messages: 17897
+Expected messages: 17897
+Current number of publishers: 5
+Total average rate: 298.28 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 3.00 ms
+
+--------------------------------------------------
+Number of publishers: 5
+Publisher QoS: 1
+Analyzer QoS: 2
+Configuration: counter/2/1/4
+Received messages: 11237
+Expected messages: 11237
+Current number of publishers: 5
+Total average rate: 187.28 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 5.00 ms
+
+--------------------------------------------------
+Number of publishers: 5
+Publisher QoS: 2
+Analyzer QoS: 0
+Configuration: counter/1/2/0
+Received messages: 516093
+Expected messages: 516093
+Current number of publishers: 5
+Total average rate: 8601.55 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 0.00 ms
+
+--------------------------------------------------
+Number of publishers: 5
+Publisher QoS: 2
+Analyzer QoS: 0
+Configuration: counter/2/2/1
+Received messages: 23792
+Expected messages: 23792
+Current number of publishers: 5
+Total average rate: 396.53 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 3.00 ms
+
+--------------------------------------------------
+Number of publishers: 5
+Publisher QoS: 2
+Analyzer QoS: 0
+Configuration: counter/1/2/2
+Received messages: 18710
+Expected messages: 18710
+Current number of publishers: 5
+Total average rate: 311.83 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 3.00 ms
+
+--------------------------------------------------
+Number of publishers: 5
+Publisher QoS: 2
+Analyzer QoS: 0
+Configuration: counter/2/2/4
+Received messages: 11251
+Expected messages: 11251
+Current number of publishers: 5
+Total average rate: 187.52 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 5.00 ms
+
+--------------------------------------------------
+Number of publishers: 5
+Publisher QoS: 2
+Analyzer QoS: 1
+Configuration: counter/1/2/0
+Received messages: 516626
+Expected messages: 516626
+Current number of publishers: 5
+Total average rate: 8610.43 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 0.00 ms
+
+--------------------------------------------------
+Number of publishers: 5
+Publisher QoS: 2
+Analyzer QoS: 1
+Configuration: counter/2/2/1
+Received messages: 24149
+Expected messages: 24149
+Current number of publishers: 5
+Total average rate: 402.48 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 3.00 ms
+
+--------------------------------------------------
+Number of publishers: 5
+Publisher QoS: 2
+Analyzer QoS: 1
+Configuration: counter/1/2/2
+Received messages: 18081
+Expected messages: 18081
+Current number of publishers: 5
+Total average rate: 301.35 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 3.00 ms
+
+--------------------------------------------------
+Number of publishers: 5
+Publisher QoS: 2
+Analyzer QoS: 1
+Configuration: counter/2/2/4
+Received messages: 11141
+Expected messages: 11141
+Current number of publishers: 5
+Total average rate: 185.68 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 5.00 ms
+
+--------------------------------------------------
+Number of publishers: 5
+Publisher QoS: 2
+Analyzer QoS: 2
+Configuration: counter/1/2/0
+Received messages: 520580
+Expected messages: 520580
+Current number of publishers: 5
+Total average rate: 8676.33 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 0.00 ms
+
+--------------------------------------------------
+Number of publishers: 5
+Publisher QoS: 2
+Analyzer QoS: 2
+Configuration: counter/2/2/1
+Received messages: 25066
+Expected messages: 25066
+Current number of publishers: 5
+Total average rate: 417.77 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 2.00 ms
+
+--------------------------------------------------
+Number of publishers: 5
+Publisher QoS: 2
+Analyzer QoS: 2
+Configuration: counter/1/2/2
+Received messages: 18344
+Expected messages: 18344
+Current number of publishers: 5
+Total average rate: 305.73 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 3.00 ms
+
+--------------------------------------------------
+Number of publishers: 5
+Publisher QoS: 2
+Analyzer QoS: 2
+Configuration: counter/2/2/4
+Received messages: 11423
+Expected messages: 11423
+Current number of publishers: 5
+Total average rate: 190.38 messages/sec
+Message loss rate: 0.00%
+Out of order rate: 0.00%
+Median inter-message gap: 5.00 ms
 
 --------------------------------------------------
